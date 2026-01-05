@@ -1,0 +1,10 @@
+.about-the-job {
+    &__responsibilitis, &__requeriments, &__benefits {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        p {
+            white-space: pre-line;
+        }
+    }
+}

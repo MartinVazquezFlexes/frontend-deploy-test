@@ -1,0 +1,9 @@
+<div [style.padding-bottom]="showHeaderFooter ? '2rem' : '0'">
+  @if(showHeaderFooter) {
+  <app-header />
+  }
+  <router-outlet />
+  @if(showHeaderFooter) {
+  <app-footer />
+  }
+</div>

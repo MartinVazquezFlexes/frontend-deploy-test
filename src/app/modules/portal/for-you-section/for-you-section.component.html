@@ -1,0 +1,22 @@
+<section class="section-for-you">
+    <h3 class="section-for-you__title"
+    [class]="[
+    'section-for-you__title',
+    `section-for-you__title--${sizeTitle()}`,
+  ]">
+        {{ sectionTitle() }}
+    </h3>
+    @for (job of visibleJobs; track job) {
+        <app-card
+            [vacancy]="job"
+            [header]="true"
+            [accionsheader]="true">
+        </app-card>
+    }
+    <app-pager
+    [totalItems]="jobs().length"
+    [itemsPerPage]="pageSize"
+    (pageChanged)="onPageChanged($event)"
+    >
+    </app-pager>
+</section>

@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="container__header">
+        <h3 class="container__header-title">{{ 'MY_CONTACT_NETWORKS.TITLE' | translate }}</h3>
+        <h6 class="container__header-description">{{ 'MY_CONTACT_NETWORKS.DESCRIPTION' | translate }}</h6>
+    </div>
+
+    <form [formGroup]="contactNetworksForm" class="container__content">
+        <div class="container__content-inputs" formArrayName="networks">
+            @for (networkControl of networksArray.controls; track i; let i = $index) {
+            <div class="container__content-inputs-container" [formGroupName]="i">
+                <h4 class="container__content-inputs-container-title">
+                    {{ networkControl.get('name')?.value }}
+                </h4>
+
+                <div class="container__content-inputs-container-controls">
+                    <app-input-generic backgroundColor="#F2F2F2" type="text"
+                        [placeholder]="networkControl.get('name')?.value" width="100%" height="48px"
+                        [leftImageUrl]="getNetworkIcon(networkControl.get('name')?.value)" placeholderPosition="center"
+                        [showClearButton]="true" formControlName="url">
+                    </app-input-generic>
+
+                    <button type="button" class="container__content-inputs-container-remove" (click)="removeNetwork(i)">
+                        <img src="assets/img/cross.svg" alt="Eliminar">
+                    </button>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="container__content-add">
+            <button class="container__content-button" type="button" (click)="onAddButtonClick($event)"
+                [disabled]="!canOpenDropdown">
+                <img src="assets/img/signPlus.svg" class="container__content-button-img">
+                <span class="container__content-button-text">{{ 'MY_CONTACT_NETWORKS.ADD_ANOTHER_NETWORK' | translate
+                    }}</span>
+            </button>
+
+            @if (isDropdownOpen) {
+            <div class="container__content-dropdown" (click)="onDropdownClick($event)">
+                @for (n of remainingNetworks; track n) {
+                <button type="button" class="container__content-dropdown-item" (click)="selectNetworkToAdd(n)">
+                    <img class="container__content-dropdown-item-icon" [src]="getNetworkIcon(n)" alt="">
+                    <span class="container__content-dropdown-item-text">{{ n }}</span>
+                </button>
+                }
+            </div>
+            }
+        </div>
+
+    </form>
+</div>

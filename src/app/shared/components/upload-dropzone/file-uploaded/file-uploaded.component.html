@@ -1,0 +1,29 @@
+  @for (file of files; track $index) {
+  <div class="upload__file upload__file--accepted upload__file--{{size}}">
+      <div class="upload__file-info">
+        <div class="upload__file-info--container">
+          <span class="upload__file-icon material-icons">task_alt</span>
+          <span class="upload__file-name">{{ file.name }}</span>
+        </div>
+        <span class="upload__file-size">{{ getFileSize(file.size) }}</span>
+      </div>
+    
+    @if (isApplicationForm()) {
+      <div 
+        class="upload__file-radio" 
+        [class.upload__file-radio--selected]="selectedFileIndex === $index"
+        (click)="selectFile($index)">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="radio-button-svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#D1D5DB" stroke-width="2"/>
+          <circle cx="9" cy="9" r="5" class="radio-inner-circle"/>
+        </svg>
+      </div>
+    }
+    
+    @if (isProfileData()) {
+      <span class="material-symbols-outlined upload__file-trashcan" (click)="removeUploadedFile($index)">
+        delete
+      </span>
+    }
+  </div>
+  }

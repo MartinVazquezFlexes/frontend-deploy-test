@@ -1,0 +1,24 @@
+<div class="select-button-container" [class.open]="isDropdownOpen" [style.width]="buttonWidth" [style.z-index]="containerZIndex">
+  <button class="select-button" 
+          [ngClass]="{'button-active': isAnyOptionSelected, 'disabled': disabled}" 
+          (click)="toggleDropdown($event)" 
+          [style.width]="buttonWidth"
+          [disabled]="disabled">
+    {{ selectedOption || (placeholder | translate) }}
+  </button>
+  <div class="select-dropdown" [class.open]="isDropdownOpen" [style.width]="dropdownWidth" [style.max-height]="dropdownMaxHeight" [style.z-index]="dropdownZIndex">
+    <!-- Search input removido para modo typeahead -->
+    <div style="margin-top: 4px;">
+      @for (option of filteredOptions; track option.value) {
+        <div class="select-dropdown__option" [class.disabled]="option.disabled"
+          [class.selected]="option.selected" (click)="!option.disabled && toggleOption(option)">
+          <span class="checkbox-container" [class.disabled]="option.disabled" [class.selected]="option.selected">
+            <span class="checkbox-visual"></span>
+            <input type="checkbox" [checked]="option.selected" [disabled]="option.disabled">
+          </span>
+          <span class="select-dropdown__option-text">{{ option.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

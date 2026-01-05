@@ -1,0 +1,35 @@
+<div class="error-page">
+  <div class="error-page__container">
+    <div class="error-page__content">
+      <div class="error-page__icon">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="50" stroke="#E5E7EB" stroke-width="4"/>
+          <path d="M40 60C40 48.9543 48.9543 40 60 40C71.0457 40 80 48.9543 80 60C80 71.0457 71.0457 80 60 80C48.9543 80 40 71.0457 40 60Z" fill="#6B7280"/>
+          <path d="M55 55L65 65M65 55L55 65" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      
+      <h1 class="error-page__title">404</h1>
+      <h2 class="error-page__subtitle">{{ 'ERROR.NOT_FOUND.TITLE' | translate }}</h2>
+      <p class="error-page__description">{{ 'ERROR.NOT_FOUND.DESCRIPTION' | translate }}</p>
+      
+      <div class="error-page__actions">
+        <app-button 
+          size="medium" 
+          variant="primary" 
+          color="login" 
+          (click)="goToLogin()">
+          {{ 'ERROR.NOT_FOUND.LOGIN_BUTTON' | translate }}
+        </app-button>
+        
+        <app-button 
+          size="medium" 
+          variant="outline" 
+          color="gray" 
+          (click)="goToHome()">
+          {{ 'ERROR.NOT_FOUND.HOME_BUTTON' | translate }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+</div> 

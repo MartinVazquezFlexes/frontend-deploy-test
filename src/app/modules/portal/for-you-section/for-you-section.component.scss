@@ -1,0 +1,20 @@
+@use '../../../../styles/variables' as *;
+:host{
+    width: 100% ;
+}
+.section-for-you{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    &__title{
+        color: $color-dark;
+        letter-spacing: $letter-spacing-titles;
+        font-weight: 600;
+        &--small{
+            font-size: 24px;
+        }
+        &--large{
+            font-size: 32px;
+        }
+    }
+}

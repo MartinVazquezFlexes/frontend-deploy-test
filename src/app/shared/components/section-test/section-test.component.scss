@@ -1,0 +1,11 @@
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__ExamplePager{
+        max-width: 1000px;
+        min-width: 500px;
+    }
+}

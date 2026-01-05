@@ -1,0 +1,14 @@
+<div class="upload">
+  <div class="upload__header">
+    <h3 class="upload__title">{{'FILE_UPLOAD.MY_FILES_TITLE' | translate }}</h3>
+    <p class="upload__subtitle">{{'FILE_UPLOAD.MY_FILES_SUBTITLE' | translate }}</p>
+  </div>
+
+  @if(messageExists()){
+  <app-error-message></app-error-message>
+  }
+
+  <div class="upload__content">
+    <app-upload-dropzone></app-upload-dropzone>
+  </div>
+</div>

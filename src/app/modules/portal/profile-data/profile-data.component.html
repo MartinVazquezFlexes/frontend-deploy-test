@@ -1,0 +1,9 @@
+<div class="profile-data-container">
+  <app-my-data />
+  <app-my-skills 
+    [selectedSkills]="selectedSkills"
+    (skillsChange)="onSkillsChange($event)"
+  />
+  <app-my-files />
+  <app-my-contact-networks />
+</div>

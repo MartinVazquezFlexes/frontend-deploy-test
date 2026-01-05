@@ -1,0 +1,80 @@
+@use "variables" as *;
+
+.upload {
+  width: 60%;
+  margin: 0 auto;
+
+  // Tablet
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+
+  // Mobile
+  @media (max-width: 480px) {
+    width: 100%;
+    margin: 0;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 3%;
+    color: #1f2937;
+
+    // Mobile
+    @media (max-width: 480px) {
+      font-size: 18px;
+    }
+  }
+
+  &__subtitle {
+    margin-top: 5px;
+    width: 100%;
+    height: 17px;
+    font-family: $font-body;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 3%;
+    color: #1f2937;
+
+    // Mobile
+    @media (max-width: 480px) {
+      font-size: 12px;
+      height: auto;
+    }
+  }
+
+  &__header {
+    padding: 1rem 0;
+
+    @media (min-width: 769px) {
+      padding: 1.5rem 0;
+    }
+
+    // Mobile
+    @media (max-width: 480px) {
+      padding: 0.75rem 0;
+    }
+  }
+
+  &__content {
+    margin-top: 1rem;
+
+    @media (min-width: 769px) {
+      margin-top: 0;
+    }
+
+    // Tablet
+    @media (max-width: 768px) and (min-width: 481px) {
+      margin-top: 0.75rem;
+    }
+
+    // Mobile
+    @media (max-width: 480px) {
+      margin-top: 0.5rem;
+    }
+  }
+}

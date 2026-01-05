@@ -1,0 +1,33 @@
+<div class="job-detail__about-the-job about-the-job ml-4">
+  <h3 class="about-the-job__title">{{ 'JOB_DETAILS.ABOUT_THE_JOB' | translate }}</h3>
+  <section class="about-the-job__content">
+    <p class="about-the-job__description">{{ description() }}</p>
+
+    <div>
+      <h4 class="about-the-job__subtitle">{{ 'JOB_DETAILS.RESPONSABILITIES' | translate }}</h4>
+      <ul>
+        @for (item of responsibilities(); track $index) {
+        <li>{{ item }}</li>
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="about-the-job__subtitle">{{ 'JOB_DETAILS.REQUIREMENTS' | translate }}</h4>
+      <ul>
+        @for (item of requirements(); track $index) {
+        <li>{{ item }}</li>
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="about-the-job__subtitle">{{ 'JOB_DETAILS.BENEFITS' | translate }}</h4>
+      <ul>
+        @for (item of benefits(); track $index) {
+        <li>{{ item }}</li>
+        }
+      </ul>
+    </div>
+  </section>
+</div>

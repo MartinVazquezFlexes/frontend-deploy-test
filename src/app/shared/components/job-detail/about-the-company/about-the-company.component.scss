@@ -1,0 +1,28 @@
+@use "variables";
+
+.about-the-company {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  gap: 20px;
+
+  &__options {
+    display: flex;
+    gap: 10px;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+  }
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__web {
+    font-style: oblique;
+    font-weight: 500;
+  }
+}

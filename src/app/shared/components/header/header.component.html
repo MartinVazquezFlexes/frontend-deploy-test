@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="header__container">
+    <div class="header__left">
+      <app-header-logo></app-header-logo>
+      <app-breadcrumb></app-breadcrumb>
+    </div>
+    <app-header-links></app-header-links>
+  </div>
+  @if (showSearch()){
+  <section class="header__content-filters">
+    <app-input-filter
+      (searchResults)="onSearchResults($event.cargo, $event.ubicacion, $event.filtros)"></app-input-filter>
+  </section>
+  }
+</header>

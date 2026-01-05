@@ -1,0 +1,59 @@
+<div class="search-filter">
+  <section class="search-filter__inputs">
+  <app-input-generic
+    class="search-filter__input"
+    [formControl]="cargoEmpresaControl"
+    width="310px"
+    type="email"
+    [placeholder]="'FILTERS.SEARCH_BY_COMPANY' | translate"
+    [floatingLabels]="false"
+    placeholderPosition="start"
+    leftImageUrl="/assets/img/input-cargo.svg"
+    [showClearButton]="true"
+    >
+  </app-input-generic>
+
+  <app-input-generic
+    class="search-filter__input"
+    [formControl]="ubicacionControl"
+    width="310px"
+    type="email"
+    [placeholder]="'FILTERS.SEARCH_BY_LOCATION' | translate"
+    [floatingLabels]="false"
+    placeholderPosition="start"
+    leftImageUrl="/assets/img/map-pin.svg"
+    [showClearButton]="true">
+  </app-input-generic>
+
+  <div class="search-filter__actions">
+    <div class="search-filter__action filter-button" [class.filter-button-hidden]="showFilters" (click)="toggleFilter()">
+      <app-button size="navbar-filter-square" variant="outline" color="default" [bgWhite]="true" [border]="false">
+        <span class="material-symbols-outlined">page_info</span>
+      </app-button>
+    </div>
+    <div class="search-filter__action">
+      <app-button size="navbar-filter-medium" variant="primary" color="default" (click)="searchFilter()">
+        <img src="/assets/img/search.svg" alt="Buscar" class="search-icon">{{"FILTERS.SEARCH.SEARCH_BUTTON" | translate}}
+      </app-button>
+    </div>
+  </div>
+</section>
+
+<section class="search-filter__filters" [class.filters-hidden]="!showFilters">
+  <div class="search-filter__filters-container">
+    @for (item of filters; track $index) {
+      <app-select-filter
+        class="search-filter__filter"
+        width="fit-content"
+        [defaultTitle]="item"
+        [filterOptions]="filterOptions[item]"
+        (chosenOption)="onFilterSelected(item, $event)">
+      </app-select-filter>
+    }
+  </div>
+  <div class="search-filter__close-button" (click)="toggleFilter()">
+    <span class="material-symbols-outlined">close</span>
+  </div>
+</section>
+
+</div>

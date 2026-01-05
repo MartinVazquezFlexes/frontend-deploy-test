@@ -1,0 +1,34 @@
+<div class="error-page">
+  <div class="error-page__container">
+    <div class="error-page__content">
+      <div class="error-page__icon">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="50" stroke="#E5E7EB" stroke-width="4"/>
+          <path d="M40 40L80 80M80 40L40 80" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      
+      <h1 class="error-page__title">401</h1>
+      <h2 class="error-page__subtitle">{{ 'ERROR.UNAUTHORIZED.TITLE' | translate }}</h2>
+      <p class="error-page__description">{{ 'ERROR.UNAUTHORIZED.DESCRIPTION' | translate }}</p>
+      
+      <div class="error-page__actions">
+        <app-button 
+          size="medium" 
+          variant="primary" 
+          color="login" 
+          (click)="goToLogin()">
+          {{ 'ERROR.UNAUTHORIZED.LOGIN_BUTTON' | translate }}
+        </app-button>
+        
+        <app-button 
+          size="medium" 
+          variant="outline" 
+          color="gray" 
+          (click)="goToHome()">
+          {{ 'ERROR.UNAUTHORIZED.HOME_BUTTON' | translate }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+</div> 

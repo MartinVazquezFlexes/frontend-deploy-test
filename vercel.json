@@ -1,0 +1,7 @@
+{
+  "buildCommand": "ng build techforb-recruiting-frontend",
+  "outputDirectory": "dist/techforb-recruiting-frontend",
+  "routes": [
+    { "src": "/(.*)", "dest": "/" }
+  ]
+}

@@ -1,0 +1,41 @@
+<div class="pager">
+    <label class="pager__cant">
+        {{getTotalItems}} {{"PAGER.RESULTS" | translate}}
+    </label>
+    <div class="pager__container-pager">
+        @if(actualPage()>0 && totalPages>minArrowVisivility){
+            <button class="pager__container-pager__btn" (click)="firstChangePage()">
+            <img src="assets/img/compuest-arrow-pager.svg" alt="">
+        </button>
+        <button class="pager__container-pager__btn" (click)="changePage(actualPage()-1)">
+            <img src="assets/img/simple-arrow-pager.svg" alt="">
+        </button>
+        }
+        @for(page of visiblePages; track page){
+            <button 
+            class="pager__container-pager__btn"
+            [class.--active]="page == actualPage()" 
+            (click)="changePage(page)">
+            {{ page + 1 }}
+           </button>
+      
+        }  @if (shouldShowEllipsis) {
+            <span class="pager__container-pager__pager--dots">...</span>
+            <button
+              class="pager__container-pager__btn"
+              [class.--active]="(totalPages - 1) == actualPage()"
+              (click)="changePage(totalPages - 1)">
+              {{ totalPages }}
+            </button>
+          }
+          @if(actualPage()<totalPages-1 && totalPages>minArrowVisivility){
+            <button class="pager__container-pager__btn" (click)="changePage(actualPage()+1)">
+                <img src="assets/img/simple-arrow-pager.svg" alt="">
+            </button>
+            <button class="pager__container-pager__btn" (click)="lastChangePage()">
+                <img src="assets/img/compuest-arrow-pager.svg" alt="">
+            </button> 
+          }
+       
+    </div>
+</div>

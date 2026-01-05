@@ -1,0 +1,30 @@
+@if (shouldShowBreadcrumb) {
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol class="breadcrumb-list">
+      @if (breadcrumbItems.length === 0) {
+        <!-- Solo mostrar Inicio cuando estamos en la página de inicio -->
+        <li class="breadcrumb-item">
+          <span class="breadcrumb-current">{{ 'NAVBAR.BREADCRUMB_ROUTES.HOME' | translate }}</span>
+        </li>
+      } @else {
+        <!-- Inicio siempre presente como link -->
+        <li class="breadcrumb-item">
+          <a routerLink="/" class="breadcrumb-link">{{ 'NAVBAR.BREADCRUMB_ROUTES.HOME' | translate }}</a>
+          <span class="breadcrumb-separator">></span>
+        </li>
+
+        <!-- Items dinámicos del breadcrumb -->
+        @for (item of breadcrumbItems; track item.url) {
+          <li class="breadcrumb-item">
+            @if (!item.isLast) {
+              <a [routerLink]="item.url" class="breadcrumb-link">{{ item.label }}</a>
+              <span class="breadcrumb-separator">></span>
+            } @else {
+              <span class="breadcrumb-current">{{ item.label }}</span>
+            }
+          </li>
+        }
+      }
+    </ol>
+  </nav>
+}

@@ -1,0 +1,75 @@
+<!-- Application Form Modal -->
+@if (shouldShowModal) {
+<div class="application-modal__overlay" (click)="closeModal()">
+  <!-- Modal Container -->
+  <div class="application-modal__container" (click)="$event.stopPropagation()">
+    <!-- Close Button -->
+    <button class="application-modal__close" (click)="closeModal()">
+      <img src="assets/img/cross.svg" alt="close">
+    </button>
+    
+    <!-- Modal Header -->
+    <div class="application-modal__header">
+      <h1 class="application-modal__title"> {{ 'APPLICATION_FORM.TITLE' | translate }}</h1>
+    </div>
+
+    <!-- Modal Content -->
+    <div class="application-modal__content">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="application-modal__form">
+        <!-- Mis datos section -->
+        <section class="application-modal__section">
+          <h3 class="application-modal__section-title">{{ 'APPLICATION_FORM.MY_DATA' | translate }}</h3>
+          <p class="application-modal__section-subtitle">{{ 'APPLICATION_FORM.MY_DATA_SUBTITLE' | translate }}</p>
+        </section>
+
+        <!--Inputs genericos-->
+        <section class="application-modal__inputs">
+          <!-- Email Input -->
+          <div class="application-modal__input-group">
+            <label class="application-modal__label" for="email">
+              {{ 'APPLICATION_FORM.EMAIL.LABEL' | translate }}
+            </label>
+            <app-input-generic id="email" width="100%" height="48px" type="email" [floatingLabels]="false"
+              [errors]="form.get('email')?.errors" formControlName="email" placeholderPosition="start"
+              placeholder="APPLICATION_FORM.EMAIL.PLACEHOLDER">
+            </app-input-generic>
+          </div>
+
+          <!-- Telephone Input -->
+          <div class="application-modal__input-group">
+            <label class="application-modal__label" for="telephone">
+              {{ 'APPLICATION_FORM.TELEPHONE.LABEL' | translate }}
+            </label>
+            <app-input-generic id="telephone" width="100%" height="48px" type="tel" [floatingLabels]="false"
+              [errors]="form.get('telephone')?.errors" formControlName="telephone" placeholderPosition="start"
+              placeholder="APPLICATION_FORM.TELEPHONE.PLACEHOLDER">
+            </app-input-generic>
+          </div>
+        </section>
+
+        <!--Files section-->
+        <section class="application-modal__files">
+          <div class="application-modal__files-header">
+            <h3 class="application-modal__files-title"> {{ 'APPLICATION_FORM.FILES.TITLE' | translate }}</h3>
+            <p class="application-modal__files-subtitle"> {{ 'APPLICATION_FORM.FILES.SUBTITLE' | translate }}</p>
+          </div>
+          <!-- Upload Dropzone Component -->
+          <div>
+            <app-upload-dropzone [mockFiles]="mockFiles" [size]="'small'" (fileUploadedEvent)="onFileUploaded($event)">
+            </app-upload-dropzone>
+          </div>
+        </section>
+
+
+
+        <!-- Modal Actions -->
+        <div class="application-modal__actions">
+          <app-button [type]="'submit'" [size]="'large'" [color]="'default'" [variant]="'primary'">
+            {{ 'APPLICATION_FORM.SUBMIT' | translate }}
+          </app-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+}

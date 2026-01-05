@@ -1,0 +1,16 @@
+<section class="section-home">
+<!--     <section class="section-home__content-filters">
+        <app-input-filter (searchResults)="onSearchResults($event.cargo, $event.ubicacion, $event.filtros)"></app-input-filter>
+    </section> -->
+    <div class="section-home__content">
+        <div class="section-home__content__left">
+            <app-work-saved></app-work-saved>
+            <app-recent-searches></app-recent-searches>
+        </div>
+        <div class="section-home__content__right">
+            <app-for-you-section sectionTitle="{{'FOR-YOU-SECTION.JOBS-FOR-YOU' | translate}}" [jobs]="jobs" [sizeTitle]="'small'"></app-for-you-section>
+            <app-for-you-section sectionTitle="{{'FOR-YOU-SECTION.FULL-STACK_DEVELOPER' | translate}}" [jobs]="jobs" [sizeTitle]="'large'"></app-for-you-section>
+        </div>
+
+    </div>
+</section>

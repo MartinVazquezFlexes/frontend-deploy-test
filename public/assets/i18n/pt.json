@@ -1,0 +1,223 @@
+{
+  "TRANSLATE": {
+    "LANGUAGE_NAME_EN": "Inglês",
+    "LANGUAGE_NAME_ES": "Espanhol",
+    "LANGUAGE_NAME_PT": "Português"
+  },
+  "WELCOME": "Bem-vindo",
+  "NAVBAR": {
+    "POSTULATION": "Minhas aplicações",
+    "NOTIFICATION": "Notificações",
+    "SETTINGS": "Configuração",
+    "LOGOUT": "Sair",
+    "BREADCRUMB_ROUTES": {
+      "HOME": "Início",
+      "MY_PROFILE": "Meu Perfil",
+      "JOB_DETAILS": "Detalhes do Trabalho"
+    }
+  },
+  "FOOTER": {
+    "TERMS-CONDITIONS": "Termos e Condições",
+    "PRIVACY-POLITICS": "Política de privacidade",
+    "FAQS": "Perguntas frequentes"
+  },
+  "less than an hour ago": "Menos de uma hora atrás",
+  "RELATIVE_TIME": {
+    "LESS_THAN_HOUR": "Há menos de uma hora",
+    "HOURS": "Há {{count}} hora",
+    "HOURS_PLURAL": "Há {{count}} horas",
+    "DAYS": "Há {{count}} dia",
+    "DAYS_PLURAL": "Há {{count}} dias",
+    "WEEKS": "Há {{count}} semana",
+    "WEEKS_PLURAL": "Há {{count}} semanas",
+    "MONTHS": "Há {{count}} mês",
+    "MONTHS_PLURAL": "Há {{count}} meses",
+    "YEARS": "Há {{count}} ano",
+    "YEARS_PLURAL": "Há {{count}} anos"
+  },
+  "POSTULARSE": "aplicar",
+  "GUARDAR": "Salvar",
+  "LOGIN": {
+    "LEFT_SIDE": {
+      "TEXT": "Impulsione sua equipe. Conecte-se com o futuro."
+    },
+    "OR": "O",
+    "TITLE": "Entrar",
+    "TEXT": "Escolha como deseja acessar",
+    "CONTINUE_WITH_BUTTON": "Continuar com",
+    "EMAIL_INPUT": "E-mail",
+    "PASSWORD_INPUT": "Senha",
+    "FORGOT_PASSWORD_BUTTON": "¿Esqueceu sua senha?",
+    "LOGIN_BUTTON": "Entrar",
+    "REGISTER_BUTTON": "Registrar-se",
+    "TERMS": "Ao entrar, você concorda com os Termos e Condições, Declarações, Política de Proteção de Dados e Política de Privacidade."
+  },
+  "ERRORS": {
+    "REQUIRED": "Este campo é obrigatório",
+    "EMAIL_INVALID": "E-mail inválido",
+    "MIN_LENGTH": "Mínimo de {{requiredLength}} caracteres",
+    "PATTERN_INVALID": "Formato inválido",
+    "MAX_LENGTH": "Máximo de {{requiredLength}} caracteres"
+  },
+  "FILE_UPLOAD": {
+    "MY_FILES_TITLE": "Meus arquivos",
+    "MY_FILES_SUBTITLE": "Aqui você pode enviar seu CV, carta de apresentação ou portfólio",
+    "LOAD": {
+      "LOAD_FILE": "Enviar arquivo",
+      "LOAD": "Enviar",
+      "DELETE": "Excluir"
+    },
+    "ERROR": {
+      "ERROR_INVALID_TYPE": "Apenas arquivos PDF ou Word são permitidos.",
+      "ERROR_TOO_LARGE": "O arquivo não deve exceder 2MB.",
+      "ERROR_DUPLICATE_FILE": "O arquivo já existe."
+    }
+  },
+  "MY_CONTACT_NETWORKS": {
+    "TITLE": "Minhas redes de contato",
+    "DESCRIPTION": "Aqui você pode atualizar seus métodos de contato",
+    "ADD_ANOTHER_NETWORK": "Adicionar outra rede"
+  },
+  "FILTERS": {
+    "SEARCH_BY_COMPANY": "Pesquisar por Cargo, Empresa...",
+    "SEARCH_BY_LOCATION": "Pesquisar por localização",
+    "SEARCH": {
+      "SEARCH_BUTTON": "Pesquisar"
+    },
+    "SELECT": {
+      "ORDER_BY": "Ordenar",
+      "LOCATION": "Localização",
+      "WORK_TYPE": "Modalidade",
+      "EXPERIENCE": "Experiência",
+      "SALARY": "Salário",
+      "WORK_MODE": "Jornada"
+    },
+    "OPTIONS": {
+      "ORDER_BY": {
+        "RECENT": "Mais recente",
+        "OLDEST": "Mais antigo"
+      },
+      "LOCATION": {
+        "REMOTE": "Remoto",
+        "ONSITE": "Presencial",
+        "HYBRID": "Híbrido"
+      },
+      "WORK_TYPE": {
+        "FULL_TIME": "Tempo integral",
+        "PART_TIME": "Meio período",
+        "FREELANCE": "Freelance"
+      },
+      "EXPERIENCE": {
+        "NONE": "Sem experiência",
+        "ONE_TO_THREE": "1 a 3 anos",
+        "MORE_THAN_THREE": "Mais de 3 anos"
+      },
+      "SALARY": {
+        "ONE_THOUSAND": "$1000",
+        "TWO_THOUSAND": "$2000",
+        "THREE_THOUSAND": "Mais de $3000"
+      },
+      "WORK_MODE": {
+        "MORNING": "Manhã",
+        "AFTERNOON": "Tarde",
+        "NIGHT": "Noite"
+      }
+    }
+  },
+  "PAGER": {
+    "RESULTS": "resultados"
+  },
+  "MY_DATA": {
+    "TITLE": "Meus dados",
+    "SUBTITLE": "Aqui você pode visualizar e editar seus dados pessoais",
+    "UPLOAD": "carregar",
+    "FUNCTIONAL_ROLE": "Função funcional",
+    "FUNCTIONAL_ROLE_REQUIRED": "Você deve selecionar uma função funcional",
+    "ENGLISH_LEVEL": "Nível de inglês",
+    "ENGLISH_LEVEL_REQUIRED": "Você deve selecionar um nível de inglês",
+    "COUNTRY": "País",
+    "COUNTRY_REQUIRED": "Você deve selecionar um país"
+  },
+  "ENGLISH_LEVELS": {
+    "BASIC": "Básico",
+    "INTERMEDIATE": "Intermediário",
+    "ADVANCED": "Avançado",
+    "NATIVE_BILINGUAL": "Nativo/Bilíngue"
+  },
+  "FOR-YOU-SECTION": {
+    "JOBS-FOR-YOU": "Empregos para você",
+    "FULL-STACK_DEVELOPER": "Desenvolvedor Full Stack"
+  },
+  "WORKED_SAVED": {
+    "TITLE": "Trabalho salvo",
+    "BUTTON": "solicitar"
+  },
+  "ERROR": {
+    "UNAUTHORIZED": {
+      "TITLE": "Não autorizado",
+      "DESCRIPTION": "Você não tem permissão para acessar esta página. Por favor, faça login para continuar.",
+      "LOGIN_BUTTON": "Entrar",
+      "HOME_BUTTON": "Ir para o início"
+    },
+    "FORBIDDEN": {
+      "TITLE": "Acesso proibido",
+      "DESCRIPTION": "Você não tem as permissões necessárias para acessar esta página. Entre em contato com o administrador se acredita que isso é um erro.",
+      "LOGIN_BUTTON": "Entrar",
+      "HOME_BUTTON": "Ir para o início"
+    },
+    "NOT_FOUND": {
+      "TITLE": "Página não encontrada",
+      "DESCRIPTION": "A página que você está procurando não existe ou foi movida. Verifique a URL e tente novamente.",
+      "LOGIN_BUTTON": "Entrar",
+      "HOME_BUTTON": "Ir para o início"
+    }
+  },
+  "APPLICATION_FORM": {
+    "TITLE": "Solicitar o emprego",
+    "MY_DATA": "Meus dados",
+    "MY_DATA_SUBTITLE": "Configure seus dados de contato",
+    "CANCEL": "Cancelar",
+    "SUBMIT": "Enviar solicitação",
+    "EMAIL": {
+      "LABEL": "E-mail",
+      "PLACEHOLDER": "Digite seu e-mail"
+    },
+    "TELEPHONE": {
+      "LABEL": "Telefone",
+      "PLACEHOLDER": "Digite seu telefone"
+    },
+    "FILES": {
+      "TITLE": "Arquivos",
+      "SUBTITLE": "Aqui você pode escolher ou enviar seu currículo"
+    }
+  },
+  "SEARCH": {
+    "RECENT_SEARCHES": "Pesquisas recentes",
+    "CLEAR_ALL": "Limpar tudo"
+  },
+  "JOB_DETAILS": {
+    "APPLY": "Aplicar",
+    "SHARE": "Compartilhar",
+    "SEE_MORE": "Ver mais",
+    "JOBS": "Empregos",
+    "NO_DETAILS": "Nenhum detalhe disponível para este trabalho",
+    "ABOUT_THE_JOB": "Sobre o trabalho",
+    "RESPONSABILITIES": "Responsabilidades",
+    "REQUIREMENTS": "Requisitos",
+    "BENEFITS": "Benefícios",
+    "ABOUT": "Sobre"
+  },
+  "MY_SKILLS": {
+    "TITLE": "Minhas habilidades",
+    "SUBTITLE": "Aqui você pode adicionar as habilidades que melhor o representam",
+    "ADD": "Adicionar",
+    "HABILITIES": "Habilidades",
+    "PLACEHOLDER": "Pesquisar ou adicionar habilidades..."
+  },
+  "SELECT_BUTTON": {
+    "DEFAULT_PLACEHOLDER": "Selecionar opções",
+    "MULTIPLE_SELECTED": "{{count}} selecionados",
+    "SINGLE_SELECTED": "{{count}} selecionado",
+    "SEARCH_PLACEHOLDER": "Buscar..."
+  }
+}

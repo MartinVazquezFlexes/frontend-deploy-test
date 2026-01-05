@@ -1,0 +1,17 @@
+.header {
+    &__location, &__job-type, &__post-time {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    &__description {
+        font-size: 14px;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+

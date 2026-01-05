@@ -1,0 +1,183 @@
+@use 'variables' as *;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* unico cambio, en el import url */
+
+$spacing-scale: (
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 2rem
+);
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  background-color: $color-background;
+  font-family: $font-body;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+}
+
+a{
+  text-decoration: none;
+  color:#1F2937;
+}
+
+/* file & dropzone */
+.upload{
+
+  &__file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+
+  }
+
+    &__file-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    &--container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @media screen and (max-width:768px) {
+      flex-direction: column;
+      align-items: start;
+    }
+
+  }
+
+  &__file-name {
+    font-weight: 600;
+    color: $color-default;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media screen and (max-width: 768px) {
+      max-width: 180px;
+    }
+
+    @media screen and (max-width: 480px) {
+      max-width: 120px;
+    }
+  }
+
+
+  &__file-size {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+}
+
+// Container classes
+.container {
+  width: 100%;
+  margin: 2rem auto;
+
+  &--sm{
+    max-width: 640px;
+  }
+  &--md{
+    max-width: 768px;
+  }
+  &--lg{
+    max-width: 1024px;
+  }
+}
+
+// Spacing utilities
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 1rem; }
+.gap-4 { gap: 1.5rem; }
+.gap-5 { gap: 2rem; }
+
+@each $key, $size in $spacing-scale {
+  .m-#{$key} { margin: $size; }
+  .mt-#{$key} { margin-top: $size; }
+  .mb-#{$key} { margin-bottom: $size; }
+  .ml-#{$key} { margin-left: $size; }
+  .mr-#{$key} { margin-right: $size; }
+  .mx-#{$key} { margin-left: $size; margin-right: $size; }
+  .my-#{$key} { margin-top: $size; margin-bottom: $size; }
+
+  .p-#{$key} { padding: $size; }
+  .pt-#{$key} { padding-top: $size; }
+  .pb-#{$key} { padding-bottom: $size; }
+  .pl-#{$key} { padding-left: $size; }
+  .pr-#{$key} { padding-right: $size; }
+  .px-#{$key} { padding-left: $size; padding-right: $size; }
+  .py-#{$key} { padding-top: $size; padding-bottom: $size; }
+}
+
+// Flex utilities
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.align-items-center { align-items: center; }
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+
+// Display utilities
+.d-grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+// Form utilities
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: $color-dark;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-base;
+  font-size: 1rem;
+  transition: border-color $transition-base;
+
+  &:focus {
+    outline: none;
+    border-color: $color-default;
+  }
+
+  &.is-invalid {
+    border-color: $color-error;
+  }
+}
+
+.error-message {
+  color: $color-error;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+

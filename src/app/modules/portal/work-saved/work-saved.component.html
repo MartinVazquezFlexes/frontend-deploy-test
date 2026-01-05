@@ -1,0 +1,31 @@
+<div class="title__container">
+  <h1 class="title__container-text">{{ 'WORKED_SAVED.TITLE' | translate }}</h1>
+</div>
+
+<div class="card__container">
+  <app-card [vacancy]="vacancy" [header]="true" [accionsheader]="true" [actions]="true">
+    <div card-actions>
+      <div>
+        <app-button size="medium-more-width" variant="primary" color="default">
+          {{ 'WORKED_SAVED.BUTTON' | translate }}
+        </app-button>
+      </div>
+
+      <div class="buttons-group">
+        <app-button size="ultra-small" variant="outline" color="default" [bgWhite]="true">
+          <img src="assets/img/heart.svg">
+        </app-button>
+        <app-button size="ultra-small" variant="outline" color="default" [bgWhite]="true">
+          <img src="assets/img/msg.svg">
+        </app-button>
+      </div>
+
+    </div>
+  </app-card>
+</div>
+
+<div>
+  <div class="three-dots">
+    <img src="assets/img/three-dots.svg" alt="">
+  </div>
+</div>

@@ -1,0 +1,67 @@
+@use '../../../../styles/variables' as *;
+
+.header {
+  width: 100%;
+  background-color: inherit;
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  &__container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__content-filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    //height: 127px;
+    background-color: $color-gray-200;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    &__container {
+      width: 90%;
+    }
+
+    &__left {
+      gap: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 0.5em 0;
+
+    &__container {
+      width: 100vw;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0 8px;
+    }
+
+    &__left {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+  }
+}

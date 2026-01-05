@@ -1,0 +1,18 @@
+<div class="menu">
+  <a href="#" class="menu__link">{{"NAVBAR.POSTULATION" | translate}}</a>
+  <a href="#" class="menu__link">{{"NAVBAR.NOTIFICATION" | translate}}</a>
+  <div class="menu__dropdown dropdown" [class.dropdown--active]="isDropdownOpen">
+    <a href="#" class="dropdown__toggle" (click)="toggleDropdown($event)">
+      Daniel
+      <img src="./assets/img/profile-2.jpg" alt="Foto de perfil" class="dropdown__image" />
+    </a>
+    <div class="dropdown__menu">
+      <a class="dropdown__item"  routerLink="/profile-data">{{"NAVBAR.PROFILE" | translate}}</a>
+      <a class="dropdown__item"  style="cursor: pointer;">{{"NAVBAR.SETTINGS" | translate}}</a>
+      <a class="dropdown__item" style="cursor: pointer;" (click)="logout()">{{"NAVBAR.LOGOUT" | translate}}</a>
+      <a class="dropdown__item" (click)="switchLanguage('en')">{{ 'TRANSLATE.LANGUAGE_NAME_EN' | translate}}</a>
+      <a class="dropdown__item" (click)="switchLanguage('pt')">{{'TRANSLATE.LANGUAGE_NAME_PT'  | translate}}</a>
+      <a class="dropdown__item" (click)="switchLanguage('es')">{{'TRANSLATE.LANGUAGE_NAME_ES'  | translate}} </a>
+    </div>
+  </div>
+</div>

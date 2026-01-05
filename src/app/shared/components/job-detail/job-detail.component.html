@@ -1,0 +1,37 @@
+<!-- <section class="section-job-detail-input-filter">
+  <app-input-filter (searchResults)="onSearchResults($event.cargo, $event.ubicacion, $event.filtros)" />
+</section> -->
+
+<section class="section-job-detail container">
+  <div class="section-job-detail__list">
+    @for (job of visibleJobs; track job) {
+      <div (click)="selectJob(job)"  class="m-2">
+        <app-card
+          [vacancy]="job"
+          [header]="true"
+          [accionsheader]="true"
+          [selected]="job === selectedJob">
+        </app-card>
+      </div>
+    }
+      <app-pager [totalItems]="jobs.length" [itemsPerPage]="pageSize" (pageChanged)="onPageChanged($event)" />
+  </div>
+  <div class="section-job-detail__container ">
+    @if (hasDetail) {
+      <div class="section-job-detail__container-detail">
+
+      <app-job-detail-header [job]="selectedJob" (openApplicationFormModal)="openApplicationFormModal()" />
+      <app-application-form [isOpen]="isApplicationModalOpen" (close)="closeApplicationFormModal()" />
+      <app-about-the-job
+        [description]="selectedJobDetail?.description"
+        [responsibilities]="selectedJobDetail?.responsibilities"
+        [requirements]="selectedJobDetail?.requirements"
+        [benefits]="selectedJobDetail?.benefits"
+      />
+      <app-about-the-company [company]="selectedJobDetail?.company" />
+      </div>
+    } @else {
+      <div class="text-center text-gray-500 mt-8">{{'JOB_DETAILS.NO_DETAILS' |translate}}</div>
+    }
+  </div>
+</section>

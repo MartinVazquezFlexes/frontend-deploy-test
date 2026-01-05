@@ -1,0 +1,13 @@
+<div class="job-detail__about-the-company about-the-company">
+  <h3 class="about-the-company__title">{{'JOB_DETAILS.ABOUT' | translate }} {{ companyData().name }}</h3>
+  <p class="about-the-company__description">{{ companyData().description }}</p>
+  <a class="about-the-company__web" [href]="companyData().web">Sitio web</a>
+  <section class="about-the-company__options">
+    <app-button size="medium" variant="outline" color="default">
+        <span>{{'JOB_DETAILS.JOBS' | translate}} <img src="assets/img/union-pin.svg" alt=""></span>
+    </app-button>
+    <app-button size="medium" variant="outline" color="default">
+      <span>{{'JOB_DETAILS.SEE_MORE' | translate }}<img src="assets/img/more-pin.svg" alt="" /></span>
+    </app-button>
+  </section>
+</div>

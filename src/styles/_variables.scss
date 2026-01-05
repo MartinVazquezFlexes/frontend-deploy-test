@@ -1,0 +1,56 @@
+// 1. TIPOGRAFÍA
+$font-heading: "Styrene A LC", sans-serif;
+$font-body: "Montserrat", sans-serif;
+$font-timezone: "Orbitron", sans-serif;
+$font-poppins: "Poppins", sans-serif;
+$font-dropzone: "Archivo Narrow", sans-serif;
+
+$line-height: 1.15;
+$font-weight: 400;
+
+$letter-spacing-titles:2px; 
+
+// 2. PALETA DE COLORES
+
+$color-default: #2e2473;
+$color-default-hover: #6c69bf;
+$color-default-press: #161041;
+$color-default-disabled: rgba(46, 36, 115, 0.3);
+
+$color-white: #FFFFFF;
+$color-green: #04d9b2;
+$color-red: #cb4141;
+$color-dark: #1f2937;
+$color-dark-gray: #4b5563;
+$color-gray-100: #f2f2f2;
+$color-gray-200: #D1D5DB;
+$color-gray-300: #F6F5F6;
+
+// CSS Variables
+:root {
+  --GRIS-2: #D1D5DB;
+}
+$color-gray-303:#F6F7FE;
+$color-gray-500: #6b7280;
+$color-background: #F6F7FE;
+
+$color-success: #28a745;
+$color-error: #cb4141;
+$color-warning: #ffc107;
+$color-info: #17a2b8;
+
+// GRADIENT COLORS
+$gradient-login-end: #251d59;
+$color-tittle-login:#F6F7FE;
+$color-text-login: #FFFFFF;
+
+$color-button-border-grey:#E0E0E0;
+$color-button-placeholder:#545F71;
+
+$radius-base: 4px;
+$transition-base: 0.2s ease-in-out;
+
+$color-terms-text:#737373;
+//BOX SHADOWS
+$box-shadow-card: 0 2px 8px rgba(0,0,0,0.1);
+$box-shadow-card-hover:0 4px 16px rgba(0, 0, 0, 0.15);

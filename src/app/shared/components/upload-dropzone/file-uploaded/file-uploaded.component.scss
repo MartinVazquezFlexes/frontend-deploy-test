@@ -1,0 +1,92 @@
+@use 'variables' as *;
+
+:host ::ng-deep .upload__file {
+  &--small {
+    padding: 0.75rem;
+    margin-bottom: 0.375rem;
+  }
+
+  &--medium {
+    padding: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &--large {
+    padding: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.upload {
+
+  &__file-icon {
+    color: $color-green;
+
+    // Variantes de tamaño para el ícono del archivo
+    .upload__file--small & {
+      font-size: 1.5rem;
+    }
+
+    .upload__file--medium & {
+      font-size: 1.2rem;
+    }
+
+    .upload__file--large & {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__file-trashcan {
+    cursor: pointer;
+    color: $color-dark-gray;
+    transition: all $transition-base;
+    &:hover {
+      color: $color-dark;
+    }
+  }
+
+  &__file-radio {
+    cursor: pointer;
+    transition: all $transition-base;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+    
+    .radio-button-svg {
+      width: 18px;
+      height: 18px;
+      transition: all $transition-base;
+      
+      .radio-inner-circle {
+        fill: transparent;
+        transition: fill $transition-base;
+      }
+    }
+    
+    &--selected {
+      .radio-button-svg {
+        .radio-inner-circle {
+          fill: $color-green;
+        }
+      }
+    }
+  }
+
+  &__file {
+    border: 1px solid var(--GRIS-2, #D1D5DB);
+    border-radius: 8px;
+    transition: all $transition-base;
+    
+    &.upload__file--accepted {
+      &:has(.upload__file-radio--selected) {
+        border: 1px solid var(--Principal, $color-default);
+        background-color: rgba(46, 36, 115, 0.05);
+      }
+    }
+  }
+
+}

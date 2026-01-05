@@ -1,0 +1,192 @@
+@use "variables" as *;
+
+.profile-card {
+  width: 60%;
+  margin: 0 auto;
+
+  // Tablet
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+
+  // Mobile
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 3%;
+    color: #1f2937;
+
+    // Mobile
+    @media (max-width: 480px) {
+      font-size: 18px;
+    }
+  }
+  &__subtitle {
+    margin-top: 5px;
+      width: 100%;
+      height: 17px;
+      font-family: $font-body;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      letter-spacing: 3%;
+      color: #1f2937;
+
+      // Mobile
+      @media (max-width: 480px) {
+        font-size: 12px;
+        height: auto;
+      }
+  }
+
+}
+
+.profile-form {
+  background-color: #ffffff;
+  border: 1px solid $color-gray-200;
+  border-radius: 12px;
+  padding: 3rem 2rem !important;
+
+  // Tablet
+  @media (max-width: 768px) {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2.5rem !important;
+    padding: 2.5rem 1.5rem !important;
+  }
+
+  // Mobile
+  @media (max-width: 480px) {
+    padding: 2rem 1rem !important;
+    gap: 2rem !important;
+  }
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+  @media (max-width: 768px) {
+    margin: 1rem 0 2rem 0 !important;
+  }
+
+  // Mobile
+  @media (max-width: 480px) {
+    margin: 0.75rem 0 1.5rem 0 !important;
+  }
+}
+
+.inputs {
+  width: 100%;
+
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+  }
+
+  // Mobile
+  @media (max-width: 480px) {
+    margin-top: 0.5rem;
+  }
+}
+
+.avatar-upload {
+  width: 120px;
+  height: 120px;
+  background-color: #F2F2F2;
+  border-radius: 80%;
+  cursor: pointer;
+  padding: 20px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: #d9d9d9;
+  }
+
+  .avatar-img {
+    border-radius: 80%;
+  }
+
+  .upload-text {
+    font-size: 14px;
+    color: $color-default;
+    font-weight: 500;
+
+    // Mobile
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
+
+  // Mobile
+  @media (max-width: 480px) {
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+.phone-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.flag-img {
+  position: absolute;
+  left: 10px;
+  top: 40%;
+  width: 20px;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.country-select {
+  position: absolute;
+  left: 32px;
+  top: 40%;
+  background: transparent;
+  border: none;
+  width: 40px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+  z-index: 2;
+  padding-right: 15px;
+
+  &:disabled {
+    color: #666;
+    cursor: not-allowed;
+  }
+}
+.phone-input {
+  padding-right: 15px;
+  font-family: $font-body;
+}
+
+
+.error-message {
+  margin-top: 4px;
+  font-family: $font-body;
+  font-size: 12px;
+  color: $color-red;
+  line-height: 130%;
+}
+

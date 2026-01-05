@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="container__ExamplePager">
+    <h6>Ejemplo paginador</h6>
+    <h1>Muestra pagina {{ getCurrentPage + 1 }}</h1>
+    <app-pager
+      [itemsPerPage]="1"
+      [totalItems]="21"
+      [actualPage]="0"
+      (pageChanged)="onPageChanged($event)">
+    </app-pager>
+  </div>
+</div>

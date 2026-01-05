@@ -1,0 +1,217 @@
+{
+  "TRANSLATE": {
+    "LANGUAGE_NAME_EN": "Inglés",
+    "LANGUAGE_NAME_ES": "Español",
+    "LANGUAGE_NAME_PT": "Portugués"
+  },
+  "WELCOME": "Bienvenido",
+  "NAVBAR": {
+    "POSTULATION": "Mis aplicaciones",
+    "NOTIFICATION": "Notificaciones",
+    "SETTINGS": "Configuración",
+    "PROFILE": "Mi perfil",
+    "LOGOUT": "Cerrar sesión",
+    "BREADCRUMB_ROUTES": {
+      "HOME": "Inicio",
+      "MY_PROFILE": "Mi perfil",
+      "JOB_DETAILS": "Detalles del trabajo"
+    }
+  },
+  "FOOTER": {
+    "TERMS-CONDITIONS": "Terminos y condiciones",
+    "PRIVACY-POLITICS": "Política de privacidad",
+    "FAQS": "Preguntas frecuentes"
+  },
+  "RELATIVE_TIME": {
+    "LESS_THAN_HOUR": "Hace menos de una hora",
+    "HOURS": "Hace {{count}} hora",
+    "HOURS_PLURAL": "Hace {{count}} horas",
+    "DAYS": "Hace {{count}} día",
+    "DAYS_PLURAL": "Hace {{count}} días",
+    "WEEKS": "Hace {{count}} semana",
+    "WEEKS_PLURAL": "Hace {{count}} semanas",
+    "MONTHS": "Hace {{count}} mes",
+    "MONTHS_PLURAL": "Hace {{count}} meses",
+    "YEARS": "Hace {{count}} año",
+    "YEARS_PLURAL": "Hace {{count}} años"
+  },
+  "POSTULARSE": "Postularse",
+  "GUARDAR": "Guardar",
+  "LOGIN": {
+    "LEFT_SIDE": {
+      "TEXT": "Impulsa tu equipo. Conecta con el futuro."
+    },
+    "OR": "O",
+    "TITLE": "Iniciar sesión",
+    "TEXT": "Elige cómo quieres ingresar",
+    "CONTINUE_WITH_BUTTON": "Continuar con",
+    "EMAIL_INPUT": "Email",
+    "PASSWORD_INPUT": "Contraseña",
+    "FORGOT_PASSWORD_BUTTON": "¿Olvidaste tu contraseña?",
+    "LOGIN_BUTTON": "Ingresar",
+    "REGISTER_BUTTON": "Registrarse",
+    "TERMS": "Al iniciar sesión, aceptas los Términos y Condiciones, Declaraciones, Política de Protección de Datos y Política de Privacidad."
+  },
+  "ERRORS": {
+    "REQUIRED": "Este campo es requerido",
+    "EMAIL_INVALID": "Email inválido",
+    "MIN_LENGTH": "Mínimo {{requiredLength}} caracteres",
+    "PATTERN_INVALID": "Formato inválido",
+    "MAX_LENGTH": "Máximo {{requiredLength}} caracteres"
+  },
+  "FILE_UPLOAD": {
+    "MY_FILES_TITLE": "Mis archivos",
+    "MY_FILES_SUBTITLE": "Aquí podrás subir tu CV, cover letter o portfolio",
+    "LOAD": {
+      "LOAD_FILE": "Cargar archivo",
+      "LOAD": "Cargar",
+      "DELETE": "Eliminar"
+    },
+    "ERROR": {
+      "ERROR_INVALID_TYPE": "Solo se permiten archivos PDF o Word.",
+      "ERROR_TOO_LARGE": "El archivo no debe superar los 2MB.",
+      "ERROR_DUPLICATE_FILE": "El archivo ya existe."
+    }
+  },
+  "MY_CONTACT_NETWORKS": {
+    "TITLE": "Mis redes de contacto",
+    "DESCRIPTION": "Aqui podrás actualizar tus métodos de contacto",
+    "ADD_ANOTHER_NETWORK": "Agregar otra red"
+  },
+  "FILTERS": {
+    "SEARCH_BY_COMPANY": "Buscar por Cargo, Empresa...",
+    "SEARCH_BY_LOCATION": "Buscar por ubicación",
+    "SEARCH": {
+      "SEARCH_BUTTON": "Buscar"
+    },
+    "SELECT": {
+      "ORDER_BY": "Ordenar",
+      "LOCATION": "Ubicación",
+      "WORK_TYPE": "Modalidad",
+      "EXPERIENCE": "Experiencia",
+      "SALARY": "Salario",
+      "WORK_MODE": "Jornada"
+    },
+    "OPTIONS": {
+      "ORDER_BY": {
+        "RECENT": "Más reciente",
+        "OLDEST": "Más antiguo"
+      },
+      "LOCATION": {
+        "REMOTE": "Remoto",
+        "ONSITE": "Presencial",
+        "HYBRID": "Híbrido"
+      },
+      "WORK_TYPE": {
+        "FULL_TIME": "Tiempo completo",
+        "PART_TIME": "Medio tiempo",
+        "FREELANCE": "Freelance"
+      },
+      "EXPERIENCE": {
+        "NONE": "Sin experiencia",
+        "ONE_TO_THREE": "Entre 1 y 3 años",
+        "MORE_THAN_THREE": "Más de 3 años"
+      },
+      "SALARY": {
+        "ONE_THOUSAND": "$1000",
+        "TWO_THOUSAND": "$2000",
+        "THREE_THOUSAND": "Más de $3000"
+      },
+      "WORK_MODE": {
+        "MORNING": "Mañana",
+        "AFTERNOON": "Tarde",
+        "NIGHT": "Noche"
+      }
+    }
+  },
+  "MY_DATA": {
+    "TITLE": "Mis datos",
+    "SUBTITLE": "Aquí podrás visualizar y editar tus datos personales",
+    "UPLOAD": "Cargar",
+    "FUNCTIONAL_ROLE": "Rol funcional",
+    "FUNCTIONAL_ROLE_REQUIRED": "Debes seleccionar un rol funcional",
+    "ENGLISH_LEVEL": "Nivel de inglés",
+    "ENGLISH_LEVEL_REQUIRED": "Debes seleccionar un nivel de inglés",
+    "COUNTRY": "País",
+    "COUNTRY_REQUIRED": "Debes seleccionar un país"
+  },
+  "PAGER": {
+    "RESULTS": "resultados"
+  },
+  "FOR-YOU-SECTION": {
+    "JOBS-FOR-YOU": "Empleos Para ti",
+    "FULL-STACK_DEVELOPER": "Full Stack Developer"
+  },
+  "WORKED_SAVED": {
+    "TITLE": "Empleo guardado",
+    "BUTTON": "solicitar"
+  },
+  "ERROR": {
+    "UNAUTHORIZED": {
+      "TITLE": "No autorizado",
+      "DESCRIPTION": "No tienes permisos para acceder a esta página. Por favor, inicia sesión para continuar.",
+      "LOGIN_BUTTON": "Iniciar sesión",
+      "HOME_BUTTON": "Ir al inicio"
+    },
+    "FORBIDDEN": {
+      "TITLE": "Acceso prohibido",
+      "DESCRIPTION": "No tienes los permisos necesarios para acceder a esta página. Contacta al administrador si crees que esto es un error.",
+      "LOGIN_BUTTON": "Iniciar sesión",
+      "HOME_BUTTON": "Ir al inicio"
+    },
+    "NOT_FOUND": {
+      "TITLE": "Página no encontrada",
+      "DESCRIPTION": "La página que buscas no existe o ha sido movida. Verifica la URL e intenta nuevamente.",
+      "LOGIN_BUTTON": "Iniciar sesión",
+      "HOME_BUTTON": "Ir al inicio"
+    }
+  },
+  "APPLICATION_FORM": {
+    "TITLE": "Solicita el empleo",
+    "MY_DATA": "Mis datos",
+    "MY_DATA_SUBTITLE": "Configura tus datos de contácto",
+    "CANCEL": "Cancelar",
+    "SUBMIT": "Enviar solicitud",
+    "EMAIL": {
+      "LABEL": "Mail",
+      "PLACEHOLDER": "Ingresa tu mail"
+    },
+    "TELEPHONE": {
+      "LABEL": "Teléfono",
+      "PLACEHOLDER": "Ingresa tu teléfono"
+    },
+    "FILES": {
+      "TITLE": "Archivos",
+      "SUBTITLE": "Aqui podrás elegir o subir tu CV"
+    }
+  },
+  "SEARCH": {
+    "RECENT_SEARCHES": "Busquedas recientes",
+    "CLEAR_ALL": "Limpiar"
+  },
+  "JOB_DETAILS": {
+    "APPLY": "Aplicar",
+    "SHARE": "Compartir",
+    "SEE_MORE": "Ver más",
+    "JOBS": "Empleos",
+    "NO_DETAILS": "No hay detalles disponibles para este empleo",
+    "ABOUT_THE_JOB": "Acerca del empleo",
+    "RESPONSABILITIES": "Responsabilidades",
+    "REQUIREMENTS": "Requisitos",
+    "BENEFITS": "Beneficios",
+    "ABOUT": "Acerca de"
+  },
+  "MY_SKILLS": {
+    "TITLE": "Mis habilidades",
+    "SUBTITLE": "Aquí podrás agregar las habilidades que mejor te representen",
+    "ADD": "Agregar",
+    "HABILITIES": "Habilidades",
+    "PLACEHOLDER": "Buscar o agregar habilidades..."
+  },
+  "SELECT_BUTTON": {
+    "DEFAULT_PLACEHOLDER": "Seleccionar opciones",
+    "MULTIPLE_SELECTED": "{{count}} seleccionados",
+    "SINGLE_SELECTED": "{{count}} seleccionado",
+    "SEARCH_PLACEHOLDER": "Buscar..."
+  }
+}

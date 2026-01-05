@@ -1,0 +1,10 @@
+<div class="recent-search-container">
+  <h2 class="recent-search-title"> {{'SEARCH.RECENT_SEARCHES'| translate}} </h2>
+  <section class="recent-search">
+    @for (item of searches; track $index) {
+      <button (click)="showJob(item.id)" type="button" class="recent-search__job">
+        <h3 class="recent-search__description">{{item.title}} ↗</h3>
+      </button>
+    }
+  </section>
+</div>

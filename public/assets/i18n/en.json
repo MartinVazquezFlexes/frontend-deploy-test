@@ -1,0 +1,222 @@
+{
+  "TRANSLATE":{
+    "LANGUAGE_NAME_EN": "English",
+    "LANGUAGE_NAME_ES": "Spanish",
+    "LANGUAGE_NAME_PT": "Portuguese"
+  },
+  "WELCOME": "Welcome",
+  "NAVBAR": {
+    "POSTULATION": "My postulations",
+    "NOTIFICATION": "Notifications",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Log out",
+    "BREADCRUMB_ROUTES":{
+      "HOME": "Home",
+      "MY_PROFILE": "My profile",
+      "JOB_DETAILS": "Job details"
+    }
+  },
+  "FOOTER": {
+    "TERMS-CONDITIONS": "Terms and conditions",
+    "PRIVACY-POLITICS": "Privacy policy",
+    "FAQS": "FAQs"
+  },
+  "RELATIVE_TIME": {
+    "LESS_THAN_HOUR": "Less than an hour ago",
+    "HOURS": "{{count}} hour ago",
+    "HOURS_PLURAL": "{{count}} hours ago",
+    "DAYS": "{{count}} day ago",
+    "DAYS_PLURAL": "{{count}} days ago",
+    "WEEKS": "{{count}} week ago",
+    "WEEKS_PLURAL": "{{count}} weeks ago",
+    "MONTHS": "{{count}} month ago",
+    "MONTHS_PLURAL": "{{count}} months ago",
+    "YEARS": "{{count}} year ago",
+    "YEARS_PLURAL": "{{count}} years ago "
+  },
+  "POSTULARSE": "Postulate",
+  "GUARDAR": "Save",
+  "LOGIN": {
+    "LEFT_SIDE": {
+      "TEXT": "Boost your team. Connect with the future."
+    },
+    "OR": "OR",
+    "TITLE": "Log in",
+    "TEXT": "Choose how you want to enter",
+    "CONTINUE_WITH_BUTTON": "Continue with",
+    "EMAIL_INPUT": "Email",
+    "PASSWORD_INPUT": "Password",
+    "FORGOT_PASSWORD_BUTTON": "¿Forgot password?",
+    "LOGIN_BUTTON": "Sign in",
+    "REGISTER_BUTTON": "Register",
+    "TERMS": "By logging in, you agree to the Terms and Conditions, Disclosures, Data Protection Policy, and Privacy Policy."
+  },
+  "ERRORS": {
+    "REQUIRED": "This field is required",
+    "EMAIL_INVALID": "Invalid email",
+    "MIN_LENGTH": "Minimum {{requiredLength}} characters",
+    "PATTERN_INVALID": "Invalid format",
+    "MAX_LENGTH": "Maximum {{requiredLength}} characters"
+  },
+  "FILE_UPLOAD": {
+    "MY_FILES_TITLE": "My files",
+    "MY_FILES_SUBTITLE": "Here you can upload your CV, cover letter or portfolio",
+    "LOAD": {
+      "LOAD_FILE": "Upload file",
+      "LOAD": "Upload",
+      "DELETE": "Delete"
+    },
+    "ERROR": {
+      "ERROR_INVALID_TYPE": "Only PDF or Word files are allowed.",
+      "ERROR_TOO_LARGE": "The file must not exceed 2MB.",
+      "ERROR_DUPLICATE_FILE": "The file already exists."
+    }
+  },
+  "MY_CONTACT_NETWORKS": {
+    "TITLE": "My contact networks",
+    "DESCRIPTION": "Here you can update your contact methods",
+    "ADD_ANOTHER_NETWORK": "Add another network"
+  },
+  "FILTERS": {
+    "SEARCH_BY_COMPANY": "Search by Position, Company...",
+    "SEARCH_BY_LOCATION": "Search by location",
+    "SEARCH": {
+      "SEARCH_BUTTON": "Search"
+    },
+    "SELECT": {
+      "ORDER_BY": "Order",
+      "LOCATION": "Location",
+      "WORK_TYPE": "Work type",
+      "EXPERIENCE": "Experience",
+      "SALARY": "Salary",
+      "WORK_MODE": "Work schedule"
+    },
+    "OPTIONS": {
+      "ORDER_BY": {
+        "RECENT": "Most recent",
+        "OLDEST": "Oldest"
+      },
+      "LOCATION": {
+        "REMOTE": "Remote",
+        "ONSITE": "On-site",
+        "HYBRID": "Hybrid"
+      },
+      "WORK_TYPE": {
+        "FULL_TIME": "Full time",
+        "PART_TIME": "Part time",
+        "FREELANCE": "Freelance"
+      },
+      "EXPERIENCE": {
+        "NONE": "No experience",
+        "ONE_TO_THREE": "1 to 3 years",
+        "MORE_THAN_THREE": "More than 3 years"
+      },
+      "SALARY": {
+        "ONE_THOUSAND": "$1000",
+        "TWO_THOUSAND": "$2000",
+        "THREE_THOUSAND": "More than $3000"
+      },
+      "WORK_MODE": {
+        "MORNING": "Morning",
+        "AFTERNOON": "Afternoon",
+        "NIGHT": "Night"
+      }
+    }
+  },
+  "PAGER": {
+    "RESULTS": "results"
+  },
+  "MY_DATA": {
+    "TITLE": "My data",
+    "SUBTITLE": "Here you can view and edit your personal data",
+    "UPLOAD": "Upload",
+    "FUNCTIONAL_ROLE": "Functional role",
+    "FUNCTIONAL_ROLE_REQUIRED": "You must select a functional role",
+    "ENGLISH_LEVEL": "English level",
+    "ENGLISH_LEVEL_REQUIRED": "You must select an English level",
+    "COUNTRY": "Country",
+    "COUNTRY_REQUIRED": "You must select a country"
+  },
+  "ENGLISH_LEVELS": {
+    "BASIC": "Basic",
+    "INTERMEDIATE": "Intermediate",
+    "ADVANCED": "Advanced",
+    "NATIVE_BILINGUAL": "Native/Bilingual"
+  },
+  "FOR-YOU-SECTION": {
+    "JOBS-FOR-YOU": "Jobs for you",
+    "FULL-STACK_DEVELOPER": "Full Stack Developer"
+  },
+  "WORKED_SAVED": {
+    "TITLE": "Work saved",
+    "BUTTON": "Apply"
+  },
+  "ERROR": {
+    "UNAUTHORIZED": {
+      "TITLE": "Unauthorized",
+      "DESCRIPTION": "You don't have permission to access this page. Please log in to continue.",
+      "LOGIN_BUTTON": "Log in",
+      "HOME_BUTTON": "Go to home"
+    },
+    "FORBIDDEN": {
+      "TITLE": "Access forbidden",
+      "DESCRIPTION": "You don't have the necessary permissions to access this page. Contact the administrator if you think this is an error.",
+      "LOGIN_BUTTON": "Log in",
+      "HOME_BUTTON": "Go to home"
+    },
+    "NOT_FOUND": {
+      "TITLE": "Page not found",
+      "DESCRIPTION": "The page you're looking for doesn't exist or has been moved. Check the URL and try again.",
+      "LOGIN_BUTTON": "Log in",
+      "HOME_BUTTON": "Go to home"
+    }
+  },
+  "APPLICATION_FORM": {
+    "TITLE": "Apply for the job",
+    "MY_DATA": "My data",
+    "MY_DATA_SUBTITLE": "Configure your contact data",
+    "CANCEL": "Cancel",
+    "SUBMIT": "Submit application",
+    "EMAIL": {
+      "LABEL": "Mail",
+      "PLACEHOLDER": "Enter your mail"
+    },
+    "TELEPHONE": {
+      "LABEL": "Telephone",
+      "PLACEHOLDER": "Enter your telephone"
+    },
+    "FILES": {
+      "TITLE": "Files",
+      "SUBTITLE": "Here you can choose or upload your CV"
+    }
+  },
+  "SEARCH": {
+    "RECENT_SEARCHES": "Recent searches",
+    "CLEAR_ALL": "Clear all"
+  },
+  "JOB_DETAILS": {
+    "APPLY": "Apply",
+    "SHARE": "Share",
+    "SEE_MORE": "See more",
+    "JOBS": "Jobs",
+    "NO_DETAILS": "No details available for this job",
+    "ABOUT_THE_JOB": "About the job",
+    "RESPONSABILITIES": "Responsibilities",
+    "REQUIREMENTS": "Requirements",
+    "BENEFITS": "Benefits",
+    "ABOUT": "About"
+  },
+  "MY_SKILLS": {
+    "TITLE": "My skills",
+    "SUBTITLE": "Here you can add the skills that best represent you",
+    "ADD": "Add",
+    "HABILITIES": "Skills",
+    "PLACEHOLDER": "Search or add skills..."
+  },
+  "SELECT_BUTTON": {
+    "DEFAULT_PLACEHOLDER": "Select options",
+    "MULTIPLE_SELECTED": "{{count}} selected",
+    "SINGLE_SELECTED": "{{count}} selected",
+    "SEARCH_PLACEHOLDER": "Search..."
+  }
+}

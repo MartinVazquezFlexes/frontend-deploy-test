@@ -1,0 +1,43 @@
+@use "variables";
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid variables.$color-gray-200;
+
+  &__top {
+    display: flex;
+    gap: 4px;
+  }
+
+  &__company-name {
+    font-style: oblique;
+  }
+
+  &__job-title {
+    letter-spacing: 2px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+
+    &__primary,
+    &__secondary {
+      display: flex;
+      gap: 10px;
+    }
+    img{
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

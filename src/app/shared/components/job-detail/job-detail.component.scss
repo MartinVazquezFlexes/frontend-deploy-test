@@ -1,0 +1,70 @@
+@use "variables" as *;
+
+.section-job-detail-input-filter {
+  width: 80%;
+  margin: 0 auto;
+  @media (max-width: 1024px) {
+    width: 95%;
+  }
+  @media (max-width: 600px) {
+    width: 100vw;
+    padding: 0 8px;
+  }
+}
+
+.section-job-detail {
+  display: flex;
+  height: 80vh;
+  width: 80%;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+    min-height: 80vh;
+  }
+  @media (max-width: 600px) {
+    width: 100vw;
+    padding: 0 0;
+    min-height: 100vh;
+  }
+
+  &__list {
+    width: 30%;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #4B5563 #f1f5f9;
+    @media (max-width: 1024px) {
+      width: 100%;
+      min-height: 200px;
+      max-height: 300px;
+      padding-right: 0;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 600px) {
+      max-height: 200px;
+      min-height: 120px;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__container {
+    width: 70%;
+    overflow-y: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #4B5563 #f1f5f9;
+    @media (max-width: 1024px) {
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    @media (max-width: 600px) {
+      width: 100vw;
+      padding: 0 8px;
+    }
+  }
+}
+

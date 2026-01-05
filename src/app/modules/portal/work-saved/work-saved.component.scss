@@ -1,0 +1,40 @@
+@use "variables" as *;
+
+.title__container {
+  height: 32px;
+  margin-bottom: 20px;
+  &-text {
+    font-family: $font-heading;
+    font-size: 24px;
+    line-height: 100%;
+    color: $color-dark;
+    letter-spacing: $letter-spacing-titles;
+    font-weight: 600;
+  }
+}
+.card__container {
+  border-radius: 6px;
+  
+}
+
+[card-actions] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.three-dots{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+

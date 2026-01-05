@@ -1,0 +1,40 @@
+<app-file-uploaded 
+  [newFile]="fileUploaded"
+  [mockFiles]="mockFiles"
+  [size]="size"
+  (duplicatedFile)="duplicatedFile($event)"
+  (fileSelected)="onFileSelected($event)">
+</app-file-uploaded>
+
+@if (selectedFile) {
+<div class="upload__file upload__file--{{size}}">
+  <div class="upload__file-info">
+    <span class="upload__file-name">{{ selectedFile.name }}</span>
+    <span class="upload__file-size">{{ getFileSize(selectedFile.size) }}</span>
+  </div>
+  <div class="upload__file-actions">
+    <app-button [size]="'large'" [variant]="'primary'" [color]="'default'" class="upload__btn upload__btn--accept"
+      (click)="onAccept()">
+      <p>{{'FILE_UPLOAD.LOAD.LOAD' | translate }}</p>
+    </app-button>
+    <app-button [size]="'large'" [variant]="'primary'" [color]="'error'" class="upload__btn upload__btn--remove"
+      (click)="onRemove()">
+      <p>{{'FILE_UPLOAD.LOAD.DELETE' | translate }}</p>
+    </app-button>
+  </div>
+</div>
+}
+
+@if (!selectedFile) {
+<div class="upload__dropzone upload__dropzone--{{size}}">
+  <ngx-dropzone (change)="onSelect($event)" [multiple]="false" class="upload__dropzone-container upload__dropzone-container--{{size}}"
+    accept=".pdf,.doc,.docx">
+    <ngx-dropzone-label>
+      <div class="upload__dropzone-content">
+        <span class="upload__icon material-symbols-outlined">cloud_upload</span>
+        <span class="upload__text">{{'FILE_UPLOAD.LOAD.LOAD_FILE' | translate}}</span>
+      </div>
+    </ngx-dropzone-label>
+  </ngx-dropzone>
+</div>
+}

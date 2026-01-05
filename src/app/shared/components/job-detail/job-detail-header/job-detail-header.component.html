@@ -1,0 +1,35 @@
+<div class="job-detail__header header">
+  <section class="header__top">
+    <img [src]="jobData().imgSource" alt="" class="header__logo" />
+    <span class="header__company-name">{{ jobData().companyName }}</span>
+  </section>
+  <h2 class="header__job-title">{{ jobData().jobTitle }}</h2>
+  <section class="header__info">
+    @for (item of headerData(); track $index) {
+    <app-job-detail-header-info
+      [class]="item.class"
+      [description]="item.description"
+    />
+    }
+  </section>
+
+  <section class="actions" id="header__actions">
+    <div class="actions__primary">
+      <app-button variant="primary" color="default" size="large" (click)="openApplicationFormModal.emit()">
+        {{ 'JOB_DETAILS.APPLY' | translate }}
+      </app-button>
+      <app-button variant="outline" color="default" size="large">
+        {{ 'JOB_DETAILS.SHARE' | translate }}
+      </app-button>
+    </div>
+    <div class="actions__secondary">
+      @for (item of secondaryActionsData; track $index) {
+
+      <app-button size="square" variant="outline" color="default">
+        <img [src]="item.img" [alt]="item.alt" />
+      </app-button>
+
+      }
+    </div>
+  </section>
+</div>

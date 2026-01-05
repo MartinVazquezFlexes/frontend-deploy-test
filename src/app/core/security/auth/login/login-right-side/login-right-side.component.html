@@ -1,0 +1,81 @@
+<div class="login-right-side">
+  <div class="login-right-side__content">
+    <div class="login-right-side__content-header">
+      <h1 class="login-right-side__content-header__title">
+        {{"LOGIN.TITLE" | translate}}
+      </h1>
+      <h3 class="login-right-side__content-header__description">
+        {{"LOGIN.TEXT" | translate}}
+      </h3>
+    </div>
+
+    <div class="login-right-side__container__buttons">
+      <app-button size="ultra-large" variant="outline" color="gray" (click)="loginWithLinkedin()" [bgWhite]="true">
+        <img src="assets/img/linkedin-logo.svg">
+        <span class="span">{{"LOGIN.CONTINUE_WITH_BUTTON" | translate }} LinkedIn</span>
+      </app-button>
+
+      <app-button size="ultra-large" variant="outline" color="gray" (click)="loginWithGoogle()" [bgWhite]="true">
+        <img src="assets/img/google-logo.svg">
+        <span class="span"> {{"LOGIN.CONTINUE_WITH_BUTTON" | translate }} Google</span>
+      </app-button>
+
+    </div>
+      <!--<app-button size="ultra-large" variant="outline" color="gray" [bgWhite]="true"> 
+        <img src="assets/img/facebook-logo.svg">
+        <span class="span">{{"LOGIN.CONTINUE_WITH_BUTTON" | translate }} Facebook</span>
+      </app-button>-->
+      
+    <!--<div class="login-right-side__o">
+      {{
+      "LOGIN.OR" | translate
+      }}
+    </div>
+
+    <form class="login-right-side__form" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+      <div class="login-right-side__form-inputs">
+        <app-input-generic width="100%" height="48px" type="email" placeholder="LOGIN.EMAIL_INPUT"
+          [floatingLabels]="true" [errors]="loginForm.get('email')?.errors" [touched]="isFieldTouched('email')"
+          formControlName="email" placeholderPosition="start">
+        </app-input-generic>
+        <app-input-generic width="100%" height="48px" [type]="showPassword ? 'text' : 'password'"
+          [floatingLabels]="true" placeholder="LOGIN.PASSWORD_INPUT" [rightImageUrl]="eyeIconUrl"
+          [errors]="loginForm.get('password')?.errors" [touched]="isFieldTouched('password')" formControlName="password"
+          (rightIconClick)="togglePassword()" placeholderPosition="start">
+        </app-input-generic>
+      </div>
+      
+       @if(errorMessage) {
+        <div class="login-right-side__error">
+          <p class="login-right-side__error-text">{{ errorMessage }}</p>
+        </div>
+       }
+       
+       @if(successMessage) {
+        <div class="login-right-side__success">
+          <p class="login-right-side__success-text">{{ successMessage }}</p>
+        </div>
+       }
+       
+      <div class="login-right-side__forgot">
+        <a class="login-right-side__forgot-password" routerLink="/change-password">
+          {{ "LOGIN.FORGOT_PASSWORD_BUTTON" | translate }}
+        </a>
+      </div>
+      <div class="login-right-side__button">
+        <app-button size="ultra-large-minor-height" variant="primary" color="login" type="submit" [loading]="loading">
+          <span class="span2">{{ "LOGIN.LOGIN_BUTTON" | translate }}</span> 
+        </app-button>
+        <app-button size="ultra-large-minor-height" variant="outline" color="default" [loading]="loading">
+          <span class="span2">{{ "LOGIN.REGISTER_BUTTON" | translate }}</span> 
+        </app-button>
+      </div>
+
+      <div class="login-right-side__terms">
+        <p class="login-right-side__terms-text">
+          {{ "LOGIN.TERMS" | translate }}
+        </p>
+      </div>
+    </form>
+  </div>-->
+</div>

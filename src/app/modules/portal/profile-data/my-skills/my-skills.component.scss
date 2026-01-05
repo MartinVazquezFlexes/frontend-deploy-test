@@ -1,0 +1,343 @@
+@use "variables" as *;
+
+.profile-card {
+  width: 60%;
+  margin: 0 auto;
+
+  // Tablet
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+
+  // Mobile
+  @media (max-width: 480px) {
+    width: 100%;
+    margin: 0;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 3%;
+    // color: #1f2937;
+
+    // Mobile
+    @media (max-width: 480px) {
+      font-size: 18px;
+    }
+  }
+  &__subtitle {
+    margin-top: 5px;
+      width: 100%;
+      height: 17px;
+      font-family: $font-body;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      letter-spacing: 3%;
+      // color: #1f2937;
+
+      // Mobile
+      @media (max-width: 480px) {
+        font-size: 12px;
+        height: auto;
+      }
+  }
+
+  &__header {
+    height: 48px;
+    gap: 5px;
+    width: 100%;
+    padding: 1rem 0;
+
+    // Mobile
+    @media (max-width: 480px) {
+      height: auto;
+      padding: 0.75rem 0;
+    }
+  }
+
+  &__content {
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    margin-top: 1rem;
+
+    // Tablet
+    @media (max-width: 768px) {
+      padding: 2.5rem 1.5rem;
+      margin-top: 0.75rem;
+    }
+
+    // Mobile
+    @media (max-width: 480px) {
+      padding: 2rem 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+
+
+.skill-selector {
+  position: relative;
+  width: 100%;
+  font-family: $font-body;
+
+  &__input-container {
+    min-height: 2.5rem;
+    padding: 12px;
+    border: 1px solid $color-button-border-grey;
+    border-radius: $radius-base;
+    background-color: $color-white;
+    transition: all $transition-base;
+    box-shadow: $box-shadow-card;
+
+    &:focus-within {
+      border-color: $color-default;
+      box-shadow: 0 0 0 2px rgba(46, 36, 115, 0.1);
+    }
+
+    &:hover {
+      box-shadow: $box-shadow-card-hover;
+    }
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    background-color: $color-default;
+    color: $color-white;
+    border-radius: $radius-base;
+    font-size: 0.875rem;
+    transition: background-color $transition-base;
+
+    &:hover {
+      background-color: $color-default-hover;
+    }
+
+    &-text {
+      margin-right: 8px;
+    }
+
+    &-remove {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      padding: 0;
+      transition: opacity $transition-base;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &-icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__search-icon {
+    width: 16px;
+    height: 16px;
+    color: $color-gray-500;
+    flex-shrink: 0;
+  }
+
+  &__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    color: $color-dark;
+    font-family: inherit;
+
+    &::placeholder {
+      color: $color-button-placeholder;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    z-index: 50;
+    width: 100%;
+    margin-top: 4px;
+    background-color: $color-white;
+    border: 1px solid $color-button-border-grey;
+    border-radius: $radius-base;
+    box-shadow: $box-shadow-card-hover;
+    max-height: 240px;
+    overflow-y: auto;
+
+    &-item {
+      width: 100%;
+      padding: 12px;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color $transition-base;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      color: $color-dark;
+
+      &:hover {
+        background-color: $color-gray-100;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-gray-300;
+      }
+
+      &--add {
+        color: $color-default;
+        border-top: 1px solid $color-button-border-grey;
+        
+        &:hover {
+          background-color: rgba(46, 36, 115, 0.05);
+        }
+      }
+    }
+  }
+
+  &__plus-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &__counter {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: $color-gray-500;
+  }
+
+  // Estados del componente
+  &--disabled {
+    .skill-selector__input-container {
+      background-color: $color-gray-100;
+      border-color: $color-gray-200;
+      cursor: not-allowed;
+    }
+
+    .skill-selector__input {
+      cursor: not-allowed;
+    }
+  }
+
+  &--error {
+    .skill-selector__input-container {
+      border-color: $color-red;
+      box-shadow: 0 0 0 2px rgba(203, 65, 65, 0.1);
+    }
+  }
+
+  &--success {
+    .skill-selector__input-container {
+      border-color: $color-green;
+      box-shadow: 0 0 0 2px rgba(4, 217, 178, 0.1);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .skill-selector {
+    &__chips {
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    &__chip {
+      font-size: 0.8125rem;
+      padding: 3px 6px;
+
+      &-text {
+        margin-right: 6px;
+      }
+
+      &-icon {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    &__input-container {
+      padding: 10px;
+    }
+
+    &__dropdown-item {
+      padding: 10px;
+      font-size: 0.8125rem;
+    }
+  }
+}
+
+// Mobile specific adjustments
+@media (max-width: 480px) {
+  .skill-selector {
+    &__chips {
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    &__chip {
+      font-size: 0.75rem;
+      padding: 2px 4px;
+
+      &-text {
+        margin-right: 4px;
+      }
+
+      &-icon {
+        width: 8px;
+        height: 8px;
+      }
+    }
+
+    &__input-container {
+      padding: 8px;
+    }
+
+    &__dropdown-item {
+      padding: 8px;
+      font-size: 0.75rem;
+    }
+
+    &__counter {
+      margin-top: 6px;
+      font-size: 0.6875rem;
+    }
+  }
+}
