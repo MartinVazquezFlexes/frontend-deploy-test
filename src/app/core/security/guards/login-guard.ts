@@ -37,7 +37,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
     
     if (hasRecruiterRole) {
       setTimeout(() => {
-        router.navigate(['/']);
+        router.navigate(['/home']);
       }, 50);
       return false;
     }

@@ -12,7 +12,7 @@ export class HeaderLogoComponent {
   private router = inject(Router);
 
   navigateToHome(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
 }

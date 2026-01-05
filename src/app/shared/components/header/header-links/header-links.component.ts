@@ -41,6 +41,6 @@ export class HeaderLinksComponent implements OnInit {
       this.isDropdownOpen = false;
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     }
 }

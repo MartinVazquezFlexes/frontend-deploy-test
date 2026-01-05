@@ -13,10 +13,10 @@ export class UnauthorizedComponent {
   private router = inject(Router);
 
   goToLogin(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   goToHome(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 } 

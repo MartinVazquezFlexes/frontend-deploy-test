@@ -4,14 +4,14 @@ import { loginGuard } from './core/security/guards/login-guard';
 
 export const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     loadComponent: () =>
       import('./core/security/auth/login/login-container/login-container.component').then(m => m.LoginContainerComponent),
     canActivate: [loginGuard],
     data: { title: 'Iniciar Sesión' }
   },
   {
-    path: '',
+    path: 'home',
     loadComponent: () =>
       import('./modules/portal/home/home.component').then(m => m.HomeComponent),
     canActivate: [authGuard],

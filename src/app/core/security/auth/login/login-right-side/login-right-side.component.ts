@@ -65,7 +65,7 @@ export class LoginRightSideComponent implements OnDestroy {
       
       // Redirigir después de mostrar el mensaje
       setTimeout(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       }, 1500);
     } catch (error) {
       this.errorMessage = 'Error durante el inicio de sesión con Google. Por favor, intenta nuevamente.';
@@ -87,7 +87,7 @@ export class LoginRightSideComponent implements OnDestroy {
       
       // Redirigir después de mostrar el mensaje
       setTimeout(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       }, 1500);
     } catch (error) {
       this.errorMessage = 'Error durante el inicio de sesión con LinkedIn. Por favor, intenta nuevamente.';
@@ -120,7 +120,7 @@ export class LoginRightSideComponent implements OnDestroy {
           
           // Redirigir después de mostrar el mensaje
           setTimeout(() => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/home']);
           }, 1500);
         },
         error: (err) => {

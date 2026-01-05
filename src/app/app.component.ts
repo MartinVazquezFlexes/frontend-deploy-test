@@ -19,11 +19,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (isPlatformBrowser(this.platformId) && window.location.hash) {
       this.linkedInStrategy.processLinkedInCallback();
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }
   }
 
   get showHeaderFooter(): boolean {
-    return !this.router.url.includes('/login');
+    return !(this.router.url === '/' || this.router.url === '');
   }
 }
