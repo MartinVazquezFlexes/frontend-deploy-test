@@ -1,7 +1,10 @@
 {
-  "buildCommand": "ng build techforb-recruiting-frontend",
+  "buildCommand": "ng build techforb-recruiting-frontend --configuration production",
   "outputDirectory": "dist/techforb-recruiting-frontend",
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
