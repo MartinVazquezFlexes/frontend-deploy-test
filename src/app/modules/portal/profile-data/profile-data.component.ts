@@ -14,7 +14,7 @@ import { ButtonComponent } from '../../../shared/components/button/button.compon
   styleUrl: './profile-data.component.scss'
 })
 export class ProfileDataComponent implements OnInit {
-  selectedSkills: string[] = [];
+  selectedSkills: number[] = [];
 
   myDataInput: MyDataModel | null = null;
 
@@ -35,6 +35,7 @@ export class ProfileDataComponent implements OnInit {
           functionalRoleId: p.functionalRoles?.[0]?.id != null ? String(p.functionalRoles[0].id) : null,
           languageId: p.languages?.[0]?.id != null ? String(p.languages[0].id) : null,
         };
+        this.selectedSkills = p.skills?.map((s: any) => s.id) ?? [];
       },
       error: (err) => console.error('Error loading profile:', err),
     });
@@ -58,18 +59,30 @@ onMyDataChange(data: any) {
   };
 }
 
-  onSkillsChange(skills: string[]) {
+  onSkillsChange(skills: number[]) {
     this.selectedSkills = skills;
     console.log('Skills actualizadas:', this.selectedSkills);
   }
 
-  onSaveAll(): void {
-  if (!Object.keys(this.profilePayload).length) return;
+onSaveAll(): void {
+  const payload = {
+    ...this.profilePayload,
+    skillIds: this.selectedSkills.length > 0
+      ? this.selectedSkills
+      : undefined
+  };
+
+  // limpiar undefined
+  const cleanedPayload = Object.fromEntries(
+    Object.entries(payload).filter(([_, value]) => value !== undefined)
+  );
+
+  if (!Object.keys(cleanedPayload).length) return;
 
   this.isSaving = true;
 
   this.profileDataService
-    .updatePersonProfile(this.profilePayload)
+    .updatePersonProfile(cleanedPayload)
     .subscribe({
       next: res => {
         this.isSaving = false;
@@ -81,5 +94,6 @@ onMyDataChange(data: any) {
       }
     });
 }
+
 
 }

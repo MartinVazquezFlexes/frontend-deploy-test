@@ -9,20 +9,26 @@
     <div class="skill-selector" #dropdown>
       <div class="skill-selector__input-container">
         <!-- Selected Skills -->
-        <div class="skill-selector__chips" *ngIf="selectedSkills.length > 0">
-          @for (skill of selectedSkills; track skill) {
-            <div class="skill-selector__chip">
-              <span class="skill-selector__chip-text">{{ skill }}</span>
-              <button type="button" class="skill-selector__chip-remove" (click)="removeSkill(skill)"
-                [attr.aria-label]="'Eliminar ' + skill">
-                <svg class="skill-selector__chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        <div class="skill-selector__chips" *ngIf="selectedSkillIds.length > 0">
+  @for (skillId of selectedSkillIds; track skillId) {
+    <div class="skill-selector__chip">
+      <span class="skill-selector__chip-text">
+        {{ getSkillLabel(skillId) }}
+      </span>
+
+      <button
+        type="button"
+        class="skill-selector__chip-remove"
+        (click)="removeSkill(skillId)"
+        [attr.aria-label]="'Eliminar ' + getSkillLabel(skillId)">
+        <svg class="skill-selector__chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                   stroke-width="2">
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
-              </button>
-            </div>
-          }
-        </div>
+      </button>
+    </div>
+  }
+</div>
 
         <!-- Input Section -->
         <div class="skill-selector__input-wrapper">
@@ -40,25 +46,28 @@
       <!-- Dropdown -->
       <div class="skill-selector__dropdown" *ngIf="isOpen && (filteredSkills.length > 0 || showAddButton())">
         <!-- Predefined Skills -->
-        @for (skill of filteredSkills; track skill) {
-          <button type="button" class="skill-selector__dropdown-item" (click)="addSkill(skill)">
-            <span>{{ skill }}</span>
-          </button>
-        }
+        @for (skill of filteredSkills; track skill.value) {
+  <button
+    type="button"
+    class="skill-selector__dropdown-item"
+    (click)="addSkill(skill)">
+    <span>{{ skill.label }}</span>
+  </button>
+}
 
         <!-- Add Custom Skill Button -->
-        <button type="button" class="skill-selector__dropdown-item skill-selector__dropdown-item--add"
+        <!--<button type="button" class="skill-selector__dropdown-item skill-selector__dropdown-item--add"
           *ngIf="showAddButton()" (click)="addSkill(inputValue)">
           <svg class="skill-selector__plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 5v14M5 12h14" />
           </svg>
           <span>{{'MY_SKILLS.ADD' | translate}} "{{ inputValue }}"</span>
-        </button>
+        </button>-->
       </div>
 
       <!-- Skills Counter -->
       <div class="skill-selector__counter">
-        {{ selectedSkills.length }}/{{ maxSkills }} {{'MY_SKILLS.HABILITIES' | translate }}
+        {{ selectedSkillIds.length }}/{{ maxSkills }} {{'MY_SKILLS.HABILITIES' | translate }}
       </div>
     </div>
   </div>

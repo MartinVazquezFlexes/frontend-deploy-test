@@ -6,6 +6,7 @@ import { OptionItem } from '../../../../core/interfaces/option.interface';
 import { FunctionalRoleResponse } from '../../../../core/interfaces/functional-role.interface';
 import { EnglishLevelResponse } from '../../../../core/interfaces/english-level.interface';
 import { CountryItemResponse } from '../../../../core/interfaces/country.interface';
+import { SkillItemDTO } from '../../../../core/interfaces/skill.interface';
 
 
 @Injectable({
@@ -24,6 +25,15 @@ export class ProfileDataService {
       map(roles => roles.map(role => ({
         label: role.name,
         value: role.id
+      })))
+    );
+  }
+
+  getSkills(): Observable<OptionItem[]> {
+    return this.http.get<SkillItemDTO[]>(`${environment.apiBaseUrl}/skills/all`).pipe(
+      map(skills => skills.map(skill => ({
+        label: skill.name,
+        value: skill.id
       })))
     );
   }

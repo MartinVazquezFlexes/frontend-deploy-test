@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { ProfileDataService } from '../service/profile-data.service';
+import { OptionItem } from '../../../../core/interfaces/option.interface';
 
 
 const PREDEFINED_SKILLS = [
@@ -21,10 +23,11 @@ const PREDEFINED_SKILLS = [
   styleUrl: './my-skills.component.scss'
 })
 export class MySkillsComponent {
-  @Input() selectedSkills: string[] = [];
+  @Input() selectedSkillIds: number[] = [];
+  @Output() skillsChange = new EventEmitter<number[]>();
   @Input() maxSkills: number = 20;
-  @Output() skillsChange = new EventEmitter<string[]>();
 
+  profileDataService = inject(ProfileDataService);
   
   placeholder = 'MY_SKILLS.PLACEHOLDER';
 
@@ -33,10 +36,23 @@ export class MySkillsComponent {
 
   inputValue: string = '';
   isOpen: boolean = false;
-  filteredSkills: string[] = [];
+  allSkills: OptionItem[] = [];
+  filteredSkills: OptionItem[] = [];
 
   ngOnInit() {
-    this.updateFilteredSkills();
+    this.loadSkills();
+  }
+
+  loadSkills(){
+    this.profileDataService.getSkills().subscribe({
+      next: (response) =>{
+        this.allSkills = response;
+        this.updateFilteredSkills();
+      },
+      error: (err) =>{
+        console.error(err);
+      }
+    })
   }
 
   ngOnChanges() {
@@ -51,17 +67,21 @@ export class MySkillsComponent {
   }
 
   updateFilteredSkills() {
-    if (this.inputValue.trim()) {
-      this.filteredSkills = PREDEFINED_SKILLS.filter(skill =>
-        skill.toLowerCase().includes(this.inputValue.toLowerCase()) &&
-        !this.selectedSkills.includes(skill)
-      );
-      this.isOpen = this.filteredSkills.length > 0 || this.showAddButton();
-    } else {
-      this.filteredSkills = [];
-      this.isOpen = false;
-    }
+  const search = this.inputValue.toLowerCase().trim();
+
+  if (!search) {
+    this.filteredSkills = [];
+    this.isOpen = false;
+    return;
   }
+
+  this.filteredSkills = this.allSkills.filter(skill =>
+    skill.label.toLowerCase().includes(search) &&
+    !this.selectedSkillIds.includes(Number(skill.value))
+  );
+
+  this.isOpen = this.filteredSkills.length > 0;
+}
 
   onInputChange() {
     this.updateFilteredSkills();
@@ -70,14 +90,15 @@ export class MySkillsComponent {
   onKeyDown(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        event.preventDefault();
-        if (this.inputValue.trim()) {
-          this.addSkill(this.inputValue);
-        }
-        break;
+  event.preventDefault();
+
+  if (this.filteredSkills.length > 0) {
+    this.addSkill(this.filteredSkills[0]);
+  }
+  break;
       case 'Backspace':
-        if (!this.inputValue && this.selectedSkills.length > 0) {
-          this.removeSkill(this.selectedSkills[this.selectedSkills.length - 1]);
+        if (!this.inputValue && this.selectedSkillIds.length > 0) {
+          this.removeSkill(this.selectedSkillIds[this.selectedSkillIds.length - 1]);
         }
         break;
       case 'Escape':
@@ -87,38 +108,46 @@ export class MySkillsComponent {
     }
   }
 
-  addSkill(skill: string) {
-    const trimmedSkill = skill.trim();
-    if (trimmedSkill && 
-        !this.selectedSkills.includes(trimmedSkill) && 
-        this.selectedSkills.length < this.maxSkills) {
-      const newSkills = [...this.selectedSkills, trimmedSkill];
-      this.selectedSkills = newSkills;
-      this.skillsChange.emit(newSkills);
-      this.inputValue = '';
-      this.isOpen = false;
-      this.updateFilteredSkills();
-      setTimeout(() => this.skillInput.nativeElement.focus(), 0);
-    }
-  }
+addSkill(skill: OptionItem) {
+  const skillId = Number(skill.value);
 
-  removeSkill(skillToRemove: string) {
-    const newSkills = this.selectedSkills.filter(skill => skill !== skillToRemove);
-    this.selectedSkills = newSkills;
+  if (
+    !this.selectedSkillIds.includes(skillId) &&
+    this.selectedSkillIds.length < this.maxSkills
+  ) {
+    const newSkills = [...this.selectedSkillIds, skillId];
+    this.selectedSkillIds = newSkills;
     this.skillsChange.emit(newSkills);
+
+    this.inputValue = '';
+    this.isOpen = false;
     this.updateFilteredSkills();
   }
+}
 
-  showAddButton(): boolean {
+  removeSkill(skillId: number) {
+  const newSkills = this.selectedSkillIds.filter(id => id !== skillId);
+  this.selectedSkillIds = newSkills;
+  this.skillsChange.emit(newSkills);
+}
+
+  /*showAddButton(): boolean {
     return !!(this.inputValue.trim() && 
       !this.selectedSkills.includes(this.inputValue.trim()) &&
       !PREDEFINED_SKILLS.some(skill => skill.toLowerCase() === this.inputValue.toLowerCase()) &&
       this.selectedSkills.length < this.maxSkills);
-  }
+  }*/
+ showAddButton(): boolean {
+  return false;
+}
 
   get isInputDisabled(): boolean {
-    return this.selectedSkills.length >= this.maxSkills;
+    return this.selectedSkillIds.length >= this.maxSkills;
   }
+
+  getSkillLabel(id: number): string {
+  return this.allSkills.find(s => Number(s.value) === id)?.label ?? '';
+}
 
 
 }

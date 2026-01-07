@@ -11,7 +11,7 @@ import { LoginResponseDTO } from '../../auth.login';
 @Component({
   selector: 'app-login-right-side',
   standalone: true,
-  imports: [TranslateModule, ButtonComponent, ReactiveFormsModule, InputGenericComponent],
+  imports: [TranslateModule, ButtonComponent, ReactiveFormsModule],
   templateUrl: './login-right-side.component.html',
   styleUrl: './login-right-side.component.scss'
 })

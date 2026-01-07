@@ -9,7 +9,9 @@ import {
   inject,
   ChangeDetectorRef,
   OnDestroy,
-  ElementRef
+  ElementRef,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +28,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './select-button.component.html',
   styleUrl: './select-button.component.scss'
 })
-export class SelectButtonComponent implements OnInit, OnDestroy {
+export class SelectButtonComponent implements OnInit, OnDestroy, OnChanges {
   @Input() filterOptions?: OptionItem[];
   @Input() dropdownWidth: string = '195px';
   @Input() dropdownMaxHeight: string = '188px';
@@ -80,6 +82,13 @@ export class SelectButtonComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+  if (changes['filterOptions']) {
+    this.updateSelectedText();
+    this.cdr.detectChanges();
+  }
+}
 
   toggleDropdown(event: Event): void {
     if (this.disabled) {

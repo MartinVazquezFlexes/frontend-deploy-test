@@ -82,8 +82,8 @@ export class MyDataComponent implements OnInit, OnChanges {
     this.loadCountries();
     this.patchFormFromInput();
     this.profileForm.valueChanges
-    .pipe(debounceTime(300))
-    .subscribe(() => this.emitData());
+      .pipe(debounceTime(300))
+      .subscribe(() => this.emitData());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -91,7 +91,7 @@ export class MyDataComponent implements OnInit, OnChanges {
       this.patchFormFromInput();
     }
   }
-  
+
   private patchFormFromInput(): void {
     if (!this.data) return;
 
@@ -101,9 +101,9 @@ export class MyDataComponent implements OnInit, OnChanges {
         lastName: this.data.lastName ?? '',
         email: this.data.email ?? '',
         phone: this.data.phoneNumber ?? '',
-        functionalRole: this.data.functionalRoleId ?? '',
-        englishLevel: this.data.languageId ?? '',
-        country: this.data.countryId ?? '',
+        functionalRole: this.data.functionalRoleId != null ? this.data.functionalRoleId : '',
+        englishLevel: this.data.languageId != null ? String(this.data.languageId) : '',
+        country: this.data.countryId != null ? String(this.data.countryId) : '',
       },
       { emitEvent: false }
     );
@@ -113,11 +113,10 @@ export class MyDataComponent implements OnInit, OnChanges {
   loadFunctionalRoles() {
     this.profileDataService.getFunctionalRoles().subscribe({
       next: (roles) => {
-        //map para eliminar duplicados
         const uniqueRolesMap = new Map(roles.map(role => [role.label, role]));
-        
-        //de map a array
+
         this.functionalRoleOptions = Array.from(uniqueRolesMap.values());
+        this.normalizeFunctionalRoleOptions();
         this.cdr.detectChanges();
       },
       error: (error) => {
@@ -128,25 +127,26 @@ export class MyDataComponent implements OnInit, OnChanges {
 
   onFunctionalRoleChange(selectedOptions: any[]) {
     if (selectedOptions.length > 0) {
-      const selectedRoleValue = selectedOptions[0]; 
-      
+      const selectedRoleValue = selectedOptions[0];
+
       // Actualizar el formulario con el valor correcto
       this.profileForm.get('functionalRole')?.setValue(selectedRoleValue);
-      
+
       // Actualizar el estado de selección en las opciones
-      this.functionalRoleOptions.forEach(option => {
-        option.selected = option.value === selectedRoleValue;
-      });
-      
+      this.functionalRoleOptions = this.functionalRoleOptions.map(option => ({
+        ...option,
+        selected: String(option.value) === String(selectedRoleValue),
+      }));
+
       // Forzar la detección de cambios
       this.cdr.detectChanges();
     }
   }
 
-   // Reemitir la opción seleccionada (objeto) al componente padre
-   onFunctionalRoleObjectChange(option: OptionItem | null) {
-     this.functionalRoleChange.emit(option);
-   }
+  // Reemitir la opción seleccionada (objeto) al componente padre
+  onFunctionalRoleObjectChange(option: OptionItem | null) {
+    this.functionalRoleChange.emit(option);
+  }
 
   loadEnglishLevels() {
     this.profileDataService.getEnglishLevels().subscribe({
@@ -164,9 +164,10 @@ export class MyDataComponent implements OnInit, OnChanges {
     if (selectedOptions.length > 0) {
       const selectedLevelValue = selectedOptions[0];
       this.profileForm.get('englishLevel')?.setValue(selectedLevelValue);
-      this.englishLevelOptions.forEach(option => {
-        option.selected = option.value === selectedLevelValue;
-      });
+      this.englishLevelOptions = this.englishLevelOptions.map(option => ({
+        ...option,
+        selected: String(option.value) === String(selectedLevelValue),
+      }));
       this.cdr.detectChanges();
     }
   }
@@ -180,6 +181,8 @@ export class MyDataComponent implements OnInit, OnChanges {
       next: (countries) => {
         this.countryOptions = countries;
         this.cdr.detectChanges();
+        this.syncSelectsFromForm();
+        this.applyInitialSelections();
       },
       error: () => {
         this.countryOptions = [];
@@ -191,9 +194,10 @@ export class MyDataComponent implements OnInit, OnChanges {
     if (selectedOptions.length > 0) {
       const selectedCountryValue = selectedOptions[0];
       this.profileForm.get('country')?.setValue(selectedCountryValue);
-      this.countryOptions.forEach(option => {
-        option.selected = option.value === selectedCountryValue;
-      });
+      this.countryOptions = this.countryOptions.map(o => ({
+        ...o,
+        selected: String(o.value) === String(selectedCountryValue),
+      }));
       this.cdr.detectChanges();
     }
   }
@@ -202,28 +206,42 @@ export class MyDataComponent implements OnInit, OnChanges {
     this.countryChange.emit(option);
   }
 
-emitData(): void {
-  this.profileForm.markAllAsTouched();
-  if (this.profileForm.invalid) return;
+  onSaveChanges(): void {
+    this.saveError = null;
+    this.saveOk = false;
 
-  const v = this.profileForm.getRawValue();
+    this.profileForm.markAllAsTouched();
+    if (this.profileForm.invalid) return;
 
-  const payload = {
-    firstName: v.firstName,
-    lastName: v.lastName,
-    phoneNumber: v.phone,
-    countryId: v.country ? Number(v.country) : undefined,
-    functionalRoleId: v.functionalRole ? Number(v.functionalRole) : undefined,
-    languageId: v.englishLevel ? Number(v.englishLevel) : undefined
-  };
+    const v = this.profileForm.getRawValue();
 
-  const cleanedPayload = Object.fromEntries(
-    Object.entries(payload).filter(([_, value]) => value !== undefined)
-  );
+    const payload: any = {
+      firstName: v.firstName,
+      lastName: v.lastName,
+      phoneNumber: v.phone,
+      countryId: v.country ? Number(v.country) : undefined,
+      functionalRoleId: v.functionalRole ? Number(v.functionalRole) : undefined,
+      languageId: v.englishLevel ? Number(v.englishLevel) : undefined
+    };
 
-  this.dataChange.emit(cleanedPayload);
-}
+    Object.keys(payload).forEach(k => payload[k] === undefined && delete payload[k]);
 
+    this.isSaving = true;
+
+    this.profileDataService.updatePersonProfile(payload).subscribe({
+      next: (res) => {
+        this.isSaving = false;
+        this.saveOk = true;
+        this.profileForm.markAsPristine();
+        console.log('Profile updated:', res);
+      },
+      error: (err) => {
+        this.isSaving = false;
+        this.saveError = 'No se pudo guardar los cambios';
+        console.error('Error updating profile:', err);
+      },
+    });
+  }
 
   onSubmit() {
     if (this.profileForm.valid) {
@@ -232,7 +250,74 @@ emitData(): void {
     }
   }
 
+  emitData(): void {
+    this.profileForm.markAllAsTouched();
+    if (this.profileForm.invalid) return;
+
+    const v = this.profileForm.getRawValue();
+
+    const payload = {
+      firstName: v.firstName,
+      lastName: v.lastName,
+      phoneNumber: v.phone,
+      countryId: v.country ? Number(v.country) : undefined,
+      functionalRoleId: v.functionalRole ? Number(v.functionalRole) : undefined,
+      languageId: v.englishLevel ? Number(v.englishLevel) : undefined
+    };
+
+    const cleanedPayload = Object.fromEntries(
+      Object.entries(payload).filter(([_, value]) => value !== undefined)
+    );
+
+    this.dataChange.emit(cleanedPayload);
+  }
+
   isFieldTouched(field: string): boolean {
     return this.profileForm?.get(field)?.touched ?? false;
+  }
+
+  private syncSelectsFromForm(): void {
+    const functionalRoleValue = this.profileForm.get('functionalRole')?.value ?? '';
+    const englishLevelValue = this.profileForm.get('englishLevel')?.value ?? '';
+    const countryValue = this.profileForm.get('country')?.value ?? '';
+
+    this.functionalRoleOptions.forEach(o => o.selected = o.value === functionalRoleValue);
+    this.englishLevelOptions.forEach(o => o.selected = o.value === englishLevelValue);
+    this.countryOptions.forEach(o => o.selected = o.value === countryValue);
+
+    this.cdr.detectChanges();
+  }
+
+  private applyInitialSelections(): void {
+    const role = this.profileForm.get('functionalRole')?.value ?? '';
+    const level = this.profileForm.get('englishLevel')?.value ?? '';
+    const country = this.profileForm.get('country')?.value ?? '';
+
+    if (role && this.functionalRoleOptions.length) {
+      this.onFunctionalRoleChange([role]);
+      this.onFunctionalRoleObjectChange(
+        this.functionalRoleOptions.find(o => o.value === role) ?? null
+      );
+    }
+
+    if (level && this.englishLevelOptions.length) {
+      this.onEnglishLevelChange([level]);
+      this.onEnglishLevelObjectChange(
+        this.englishLevelOptions.find(o => o.value === level) ?? null
+      );
+    }
+
+    if (country && this.countryOptions.length) {
+      this.onCountryChange([country]);
+      this.onCountryObjectChange(
+        this.countryOptions.find(o => o.value === country) ?? null
+      );
+    }
+  }
+  private normalizeFunctionalRoleOptions(): void {
+    this.functionalRoleOptions = (this.functionalRoleOptions ?? []).map(o => ({
+      ...o,
+      value: String(o.value)
+    }));
   }
 }
