@@ -5,116 +5,67 @@
       {{ 'MY_DATA.SUBTITLE' | translate }}
     </h6>
   </div>
-  <form
-    [formGroup]="profileForm"
-    class="profile-form d-flex flex-row gap-5 align-items-start p-5"
-  >
-    <div
-      class="profile-avatar d-flex flex-column align-items-center justify-content-center m-3"
-    >
-      <div
-        class="avatar-upload d-flex flex-column align-items-center justify-content-center"
-      >
-        <img
-          src="assets/img/403edeb53fcbe0404128d044c005f71f117ef4a4.jpg"
-          alt="avatar"
-          class="avatar-img m-1"
-        />
+  <form [formGroup]="profileForm" class="profile-form d-flex flex-row gap-5 align-items-start p-5">
+    <div class="profile-avatar d-flex flex-column align-items-center justify-content-center m-3">
+      <div class="avatar-upload d-flex flex-column align-items-center justify-content-center">
+        <img src="assets/img/403edeb53fcbe0404128d044c005f71f117ef4a4.jpg" alt="avatar" class="avatar-img m-1" />
         <span class="upload-text">{{ 'MY_DATA.UPLOAD' | translate }}</span>
       </div>
     </div>
 
     <div class="d-flex flex-column gap-4 flex-grow-1 inputs">
-      <app-input-generic
-        formControlName="firstName"
-        type="text"
-        [width]="'100%'"
-        [placeholder]="'Nombre'"
-        [errors]="profileForm.get('firstName')?.errors"
-        [touched]="isFieldTouched('firstName')">
+      <app-input-generic formControlName="firstName" type="text" [width]="'100%'" [placeholder]="'Nombre'"
+        [errors]="profileForm.get('firstName')?.errors" [touched]="isFieldTouched('firstName')">
       </app-input-generic>
-      <app-input-generic
-        formControlName="lastName"
-        type="text"
-        [width]="'100%'"
-        [placeholder]="'Apellidos'"
-        [errors]="profileForm.get('lastName')?.errors"
-        [touched]="isFieldTouched('lastName')">
+      <app-input-generic formControlName="lastName" type="text" [width]="'100%'" [placeholder]="'Apellidos'"
+        [errors]="profileForm.get('lastName')?.errors" [touched]="isFieldTouched('lastName')">
       </app-input-generic>
-      <app-input-generic
-        formControlName="email"
-        type="email"
-        [width]="'100%'"
-        [placeholder]="'Email'"
-        [errors]="profileForm.get('email')?.errors"
-        [touched]="isFieldTouched('email')">
+      <app-input-generic formControlName="email" type="email" [width]="'100%'" [placeholder]="'Email'"
+        [errors]="profileForm.get('email')?.errors" [touched]="isFieldTouched('email')" >
       </app-input-generic>
-        <app-input-generic
-        formControlName="phone"
-        type="tel"
-        [width]="'100%'"
-        [placeholder]="'11 555 4444'"
-        [errors]="profileForm.get('phone')?.errors"
-        [touched]="isFieldTouched('phone')">
-        </app-input-generic>
+      <app-input-generic formControlName="phone" type="tel" [width]="'100%'" [placeholder]="'11 555 4444'"
+        [errors]="profileForm.get('phone')?.errors" [touched]="isFieldTouched('phone')">
+      </app-input-generic>
 
-        <!-- Campo de Rol Funcional -->
-        <app-select-button
-          [filterOptions]="functionalRoleOptions"
-          [buttonWidth]="'100%'"
-          [dropdownWidth]="'100%'"
-          [dropdownMaxHeight]="'200px'"
-          [containerZIndex]="10004"
-          [dropdownZIndex]="10005"
-          [placeholder]="'MY_DATA.FUNCTIONAL_ROLE'"
-          [multiple]="false"
-          (selectionChange)="onFunctionalRoleChange($event)"
-          (selectedOptionChange)="onFunctionalRoleObjectChange($event)">
-        </app-select-button>
-        @if (isFieldTouched('functionalRole') && profileForm.get('functionalRole')?.errors?.['required']) {
-          <div class="error-message">
-            {{ 'MY_DATA.FUNCTIONAL_ROLE_REQUIRED' | translate }}
-          </div>
-        }
+      <!-- Campo de Rol Funcional -->
+      <app-select-button [filterOptions]="functionalRoleOptions" [buttonWidth]="'100%'" [dropdownWidth]="'100%'"
+        [dropdownMaxHeight]="'200px'" [containerZIndex]="10004" [dropdownZIndex]="10005"
+        [placeholder]="'MY_DATA.FUNCTIONAL_ROLE'" [multiple]="false" (selectionChange)="onFunctionalRoleChange($event)"
+        (selectedOptionChange)="onFunctionalRoleObjectChange($event)">
+      </app-select-button>
+      @if (isFieldTouched('functionalRole') && profileForm.get('functionalRole')?.errors?.['required']) {
+      <div class="error-message">
+        {{ 'MY_DATA.FUNCTIONAL_ROLE_REQUIRED' | translate }}
+      </div>
+      }
 
-        <!-- Campo de Nivel de Inglés -->
-        <app-select-button
-          [filterOptions]="englishLevelOptions"
-          [buttonWidth]="'100%'"
-          [dropdownWidth]="'100%'"
-          [dropdownMaxHeight]="'200px'"
-          [containerZIndex]="10002"
-          [dropdownZIndex]="10003"
-          [placeholder]="'MY_DATA.ENGLISH_LEVEL'"
-          [multiple]="false"
-          (selectionChange)="onEnglishLevelChange($event)"
-          (selectedOptionChange)="onEnglishLevelObjectChange($event)">
-        </app-select-button>
-        @if (isFieldTouched('englishLevel') && profileForm.get('englishLevel')?.errors?.['required']) {
-          <div class="error-message">
-            {{ 'MY_DATA.ENGLISH_LEVEL_REQUIRED' | translate }}
-          </div>
-        }
+      <!-- Campo de Nivel de Inglés -->
+      <app-select-button [filterOptions]="englishLevelOptions" [buttonWidth]="'100%'" [dropdownWidth]="'100%'"
+        [dropdownMaxHeight]="'200px'" [containerZIndex]="10002" [dropdownZIndex]="10003"
+        [placeholder]="'MY_DATA.ENGLISH_LEVEL'" [multiple]="false" (selectionChange)="onEnglishLevelChange($event)"
+        (selectedOptionChange)="onEnglishLevelObjectChange($event)">
+      </app-select-button>
+      @if (isFieldTouched('englishLevel') && profileForm.get('englishLevel')?.errors?.['required']) {
+      <div class="error-message">
+        {{ 'MY_DATA.ENGLISH_LEVEL_REQUIRED' | translate }}
+      </div>
+      }
 
-        <!-- Campo de País -->
-        <app-select-button
-          [filterOptions]="countryOptions"
-          [buttonWidth]="'100%'"
-          [dropdownWidth]="'100%'"
-          [dropdownMaxHeight]="'200px'"
-          [containerZIndex]="10000"
-          [dropdownZIndex]="10001"
-          [placeholder]="'MY_DATA.COUNTRY'"
-          [searchable]="true"
-          [multiple]="false"
-          (selectionChange)="onCountryChange($event)"
-          (selectedOptionChange)="onCountryObjectChange($event)">
-        </app-select-button>
-        @if (isFieldTouched('country') && profileForm.get('country')?.errors?.['required']) {
-          <div class="error-message">
-            {{ 'MY_DATA.COUNTRY_REQUIRED' | translate }}
-          </div>
-        }
+      <!-- Campo de País -->
+      <app-select-button [filterOptions]="countryOptions" [buttonWidth]="'100%'" [dropdownWidth]="'100%'"
+        [dropdownMaxHeight]="'200px'" [containerZIndex]="10000" [dropdownZIndex]="10001"
+        [placeholder]="'MY_DATA.COUNTRY'" [searchable]="true" [multiple]="false"
+        (selectionChange)="onCountryChange($event)" (selectedOptionChange)="onCountryObjectChange($event)">
+      </app-select-button>
+      @if (isFieldTouched('country') && profileForm.get('country')?.errors?.['required']) {
+      <div class="error-message">
+        {{ 'MY_DATA.COUNTRY_REQUIRED' | translate }}
+      </div>
+      }
     </div>
   </form>
+  <app-button size="medium" variant="primary" color="login"
+    [disabled]="profileForm.invalid || isSaving || profileForm.pristine" (click)="onSaveChanges()">
+    {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
+  </app-button>
 </div>

@@ -15,7 +15,10 @@ export class ProfileDataService {
 
 
   private http = inject(HttpClient);
-  
+
+  getPersonData(): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/portal/person/profile`);
+  }
   getFunctionalRoles(): Observable<OptionItem[]> {
     return this.http.get<FunctionalRoleResponse[]>(`${environment.apiBaseUrl}/role-functional/all`).pipe(
       map(roles => roles.map(role => ({
@@ -56,28 +59,32 @@ export class ProfileDataService {
     );
   }
 
-getCountries(): Observable<OptionItem[]> {
-  return this.http
-    .get<CountryItemResponse[]>(`${environment.apiBaseUrl}/portal/direction/countries`)
-    .pipe(
-      map((countries) => {
-        //map para eliminar duplicados por nombre
-        const uniqueCountries = new Map<string, CountryItemResponse>();
-        
-        countries.forEach(country => {
-          if (!uniqueCountries.has(country.name)) {
-            uniqueCountries.set(country.name, country);
-          }
-        });
-        
-        //paso a array y lo mapeo
-        return Array.from(uniqueCountries.values())
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map((country) => ({
-            label: country.name,
-            value: String(country.id),
-          }));
-      })
-    );
-}
+  getCountries(): Observable<OptionItem[]> {
+    return this.http
+      .get<CountryItemResponse[]>(`${environment.apiBaseUrl}/portal/direction/countries`)
+      .pipe(
+        map((countries) => {
+          //map para eliminar duplicados por nombre
+          const uniqueCountries = new Map<string, CountryItemResponse>();
+
+          countries.forEach(country => {
+            if (!uniqueCountries.has(country.name)) {
+              uniqueCountries.set(country.name, country);
+            }
+          });
+
+          //paso a array y lo mapeo
+          return Array.from(uniqueCountries.values())
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((country) => ({
+              label: country.name,
+              value: String(country.id),
+            }));
+        })
+      );
+  }
+
+  updatePersonProfile(payload: any) {
+    return this.http.put<any>(`${environment.apiBaseUrl}/portal/person/profile`, payload);
+  }
 }

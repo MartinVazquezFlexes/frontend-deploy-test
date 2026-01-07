@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef, Output, EventEmitter, Input, SimpleChanges, OnChanges } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -13,18 +13,36 @@ import { ProfileDataService } from '../service/profile-data.service';
 import { ProfileForm } from './profile-form.interface';
 import { TranslateModule } from '@ngx-translate/core';
 import { OptionItem } from '../../../../core/interfaces/option.interface';
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
+
+export interface MyDataInput {
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  phoneNumber: string | null;
+
+  countryId: string | null;
+  functionalRoleId: string | null;
+  languageId: string | null;
+}
 
 @Component({
   selector: 'app-my-data',
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, InputGenericComponent, SelectButtonComponent, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, InputGenericComponent, SelectButtonComponent, TranslateModule, ButtonComponent],
   templateUrl: './my-data.component.html',
   styleUrl: './my-data.component.scss',
 })
-export class MyDataComponent implements OnInit {
+export class MyDataComponent implements OnInit, OnChanges {
   fb = inject(NonNullableFormBuilder);
   countryService = inject(CountryService);
   profileDataService = inject(ProfileDataService);
   private cdr = inject(ChangeDetectorRef);
+
+  @Input() data: MyDataInput | null = null;
+
+  isSaving = false;
+  saveError: string | null = null;
+  saveOk = false;
 
   functionalRoleOptions: OptionItem[] = [];
   englishLevelOptions: OptionItem[] = [];
@@ -35,7 +53,7 @@ export class MyDataComponent implements OnInit {
   @Output() countryChange = new EventEmitter<OptionItem | null>();
 
   profileForm = this.fb.group<ProfileForm>({
-    avatar: this.fb.control<string>('', [Validators.required]),
+    avatar: this.fb.control<string>(''),
     firstName: this.fb.control<string>('', [
       Validators.required,
       Validators.minLength(3),
@@ -44,25 +62,49 @@ export class MyDataComponent implements OnInit {
       Validators.required,
       Validators.minLength(3),
     ]),
-    email: this.fb.control<string>('', [Validators.required, Validators.email]),
+    email: this.fb.control<string>('', [Validators.email]),
     phone: this.fb.control<string>('', [
       Validators.required,
       Validators.pattern('^\\+[0-9]{1,4}[0-9]{6,14}$'),
       Validators.minLength(13),
       Validators.maxLength(15),
     ]),
-    functionalRole: this.fb.control<string>('', [Validators.required]),
-    englishLevel: this.fb.control<string>('', [Validators.required]),
-    country: this.fb.control<string>('', [Validators.required]),
+    functionalRole: this.fb.control<string>(''),
+    englishLevel: this.fb.control<string>(''),
+    country: this.fb.control<string>('')
   });
 
   ngOnInit() {
     this.loadFunctionalRoles();
     this.loadEnglishLevels();
     this.loadCountries();
+    this.patchFormFromInput();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data']?.currentValue) {
+      this.patchFormFromInput();
+    }
+  }
   
+  private patchFormFromInput(): void {
+    if (!this.data) return;
+
+    this.profileForm.patchValue(
+      {
+        firstName: this.data.firstName ?? '',
+        lastName: this.data.lastName ?? '',
+        email: this.data.email ?? '',
+        phone: this.data.phoneNumber ?? '',
+        functionalRole: this.data.functionalRoleId ?? '',
+        englishLevel: this.data.languageId ?? '',
+        country: this.data.countryId ?? '',
+      },
+      { emitEvent: false }
+    );
+
+    this.profileForm.get('email')?.disable();
+  }
   loadFunctionalRoles() {
     this.profileDataService.getFunctionalRoles().subscribe({
       next: (roles) => {
@@ -153,6 +195,43 @@ export class MyDataComponent implements OnInit {
 
   onCountryObjectChange(option: OptionItem | null) {
     this.countryChange.emit(option);
+  }
+
+  onSaveChanges(): void {
+    this.saveError = null;
+    this.saveOk = false;
+
+    this.profileForm.markAllAsTouched();
+    if (this.profileForm.invalid) return;
+
+    const v = this.profileForm.getRawValue();
+
+    const payload: any = {
+      firstName: v.firstName,
+      lastName: v.lastName,
+      phoneNumber: v.phone,
+      /*countryId: v.country ? Number(v.country) : undefined,
+      functionalRoleId: v.functionalRole ? Number(v.functionalRole) : undefined,
+      languageId: v.englishLevel ? Number(v.englishLevel) : undefined*/
+    };
+
+    Object.keys(payload).forEach(k => payload[k] === undefined && delete payload[k]);
+
+    this.isSaving = true;
+
+    this.profileDataService.updatePersonProfile(payload).subscribe({
+      next: (res) => {
+        this.isSaving = false;
+        this.saveOk = true;
+        this.profileForm.markAsPristine();
+        console.log('Profile updated:', res);
+      },
+      error: (err) => {
+        this.isSaving = false;
+        this.saveError = 'No se pudo guardar los cambios';
+        console.error('Error updating profile:', err);
+      },
+    });
   }
 
   onSubmit() {

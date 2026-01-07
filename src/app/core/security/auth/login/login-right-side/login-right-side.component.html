@@ -21,11 +21,23 @@
       </app-button>
 
     </div>
-      <!--<app-button size="ultra-large" variant="outline" color="gray" [bgWhite]="true"> 
+
+    @if(errorMessage) {
+    <div class="login-right-side__error">
+      <p class="login-right-side__error-text">{{ errorMessage }}</p>
+    </div>
+    }
+
+    @if(successMessage) {
+    <div class="login-right-side__success">
+      <p class="login-right-side__success-text">{{ successMessage }}</p>
+    </div>
+    }
+    <!--<app-button size="ultra-large" variant="outline" color="gray" [bgWhite]="true"> 
         <img src="assets/img/facebook-logo.svg">
         <span class="span">{{"LOGIN.CONTINUE_WITH_BUTTON" | translate }} Facebook</span>
       </app-button>-->
-      
+
     <!--<div class="login-right-side__o">
       {{
       "LOGIN.OR" | translate
@@ -78,4 +90,4 @@
       </div>
     </form>
   </div>-->
-</div>
+  </div>

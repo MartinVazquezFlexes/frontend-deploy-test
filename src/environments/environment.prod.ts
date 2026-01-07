@@ -2,13 +2,13 @@ import { Environment } from './environment.types';
 
 export const environment: Environment = {
   production: true,
-  apiBaseUrl: 'https://backend-deploy-test-gy4o.onrender.com/api',
+  apiBaseUrl: 'https://techforb-recruting-backend.onrender.com/api',
   firebase: {
-    apiKey: "AIzaSyCDo6kzM7NxhoronxJ0nr22BFVl4WMMNpc",
-    authDomain: "frontend-recruiting.firebaseapp.com",
-    projectId: "frontend-recruiting",
-    storageBucket: "frontend-recruiting.firebasestorage.app",
-    messagingSenderId: "91751374204",
-    appId: "1:91751374204:web:3b2a9dd32be43dd00098f9",
+    apiKey: 'AIzaSyDCNiCZ5oOFW6akmLvX4RdWcdwv5wQLWHQ',
+    authDomain: 'recruiting-test-1a6eb.firebaseapp.com',
+    projectId: 'recruiting-test-1a6eb',
+    storageBucket: 'recruiting-test-1a6eb.firebasestorage.app',
+    messagingSenderId: '47484334274',
+    appId: '1:47484334274:web:2feca28c035a7389a8cb5b',
   },
 };

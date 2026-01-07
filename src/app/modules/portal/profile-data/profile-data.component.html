@@ -1,5 +1,5 @@
-<div class="profile-data-container">
-  <app-my-data />
+<div class="profile-data-container" *ngIf="myDataInput as d">
+  <app-my-data [data]="d"></app-my-data>
   <app-my-skills 
     [selectedSkills]="selectedSkills"
     (skillsChange)="onSkillsChange($event)"
