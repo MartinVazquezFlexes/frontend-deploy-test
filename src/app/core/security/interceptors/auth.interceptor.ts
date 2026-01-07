@@ -10,6 +10,13 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
   const router = inject(Router);
 
   const token = authService.getToken();
+
+  if (token && authService.isTokenExpired(token)) {
+    authService.logout();
+    router.navigate(['/']);
+    return next(request);
+  }
+
   const authRequest = token
     ? request.clone({
         setHeaders: {
@@ -28,3 +35,4 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
     })
   );
 };
+
