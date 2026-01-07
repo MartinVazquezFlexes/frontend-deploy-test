@@ -54,7 +54,7 @@ export class GoogleLoginStrategy implements LoginStrategy {
   }
 
   private sendTokenToBackend(token: string): Observable<LoginResponseDTO> {
-    const body: GoogleLoginRequestDTO = { accessToken: token, role: 'RECRUITER' };
+    const body: GoogleLoginRequestDTO = { accessToken: token, role: 'APPLICANT' };
     return this.http.post<LoginResponseDTO>(
       `${environment.apiBaseUrl}/auth/google-login`,
       body

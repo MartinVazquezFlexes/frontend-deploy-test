@@ -22,7 +22,7 @@ export class ProfileDataComponent implements OnInit {
   ngOnInit(): void {
     this.profileDataService.getPersonData().subscribe({
       next: (p) => {
-        console
+        console.log('Person data:', p);
         this.myDataInput  = {
           firstName: p.firstName ?? null,
           lastName: p.lastName ?? null,

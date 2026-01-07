@@ -210,9 +210,9 @@ export class MyDataComponent implements OnInit, OnChanges {
       firstName: v.firstName,
       lastName: v.lastName,
       phoneNumber: v.phone,
-      /*countryId: v.country ? Number(v.country) : undefined,
+      countryId: v.country ? Number(v.country) : undefined,
       functionalRoleId: v.functionalRole ? Number(v.functionalRole) : undefined,
-      languageId: v.englishLevel ? Number(v.englishLevel) : undefined*/
+      languageId: v.englishLevel ? Number(v.englishLevel) : undefined
     };
 
     Object.keys(payload).forEach(k => payload[k] === undefined && delete payload[k]);
