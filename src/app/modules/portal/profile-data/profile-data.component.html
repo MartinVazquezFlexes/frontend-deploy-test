@@ -1,9 +1,22 @@
 <div class="profile-data-container" *ngIf="myDataInput as d">
-  <app-my-data [data]="d"></app-my-data>
+  <app-my-data
+  [data]="d"
+  (dataChange)="onMyDataChange($event)">
+</app-my-data>
   <app-my-skills 
     [selectedSkills]="selectedSkills"
     (skillsChange)="onSkillsChange($event)"
   />
   <app-my-files />
   <app-my-contact-networks />
+  <div class="floating-save-button">
+<app-button
+  size="medium"
+  variant="primary"
+  color="login"
+  [disabled]="isSaving"
+  (click)="onSaveAll()">
+  {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
+</app-button>
+</div>
 </div>

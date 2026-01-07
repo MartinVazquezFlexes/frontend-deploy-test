@@ -14,6 +14,7 @@ import { ProfileForm } from './profile-form.interface';
 import { TranslateModule } from '@ngx-translate/core';
 import { OptionItem } from '../../../../core/interfaces/option.interface';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { debounceTime } from 'rxjs';
 
 export interface MyDataInput {
   firstName: string | null;
@@ -28,7 +29,7 @@ export interface MyDataInput {
 
 @Component({
   selector: 'app-my-data',
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, InputGenericComponent, SelectButtonComponent, TranslateModule, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, InputGenericComponent, SelectButtonComponent, TranslateModule],
   templateUrl: './my-data.component.html',
   styleUrl: './my-data.component.scss',
 })
@@ -51,6 +52,7 @@ export class MyDataComponent implements OnInit, OnChanges {
   @Output() functionalRoleChange = new EventEmitter<OptionItem | null>();
   @Output() englishLevelChange = new EventEmitter<OptionItem | null>();
   @Output() countryChange = new EventEmitter<OptionItem | null>();
+  @Output() dataChange = new EventEmitter<any>();
 
   profileForm = this.fb.group<ProfileForm>({
     avatar: this.fb.control<string>(''),
@@ -79,6 +81,9 @@ export class MyDataComponent implements OnInit, OnChanges {
     this.loadEnglishLevels();
     this.loadCountries();
     this.patchFormFromInput();
+    this.profileForm.valueChanges
+    .pipe(debounceTime(300))
+    .subscribe(() => this.emitData());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -197,42 +202,28 @@ export class MyDataComponent implements OnInit, OnChanges {
     this.countryChange.emit(option);
   }
 
-  onSaveChanges(): void {
-    this.saveError = null;
-    this.saveOk = false;
+emitData(): void {
+  this.profileForm.markAllAsTouched();
+  if (this.profileForm.invalid) return;
 
-    this.profileForm.markAllAsTouched();
-    if (this.profileForm.invalid) return;
+  const v = this.profileForm.getRawValue();
 
-    const v = this.profileForm.getRawValue();
+  const payload = {
+    firstName: v.firstName,
+    lastName: v.lastName,
+    phoneNumber: v.phone,
+    countryId: v.country ? Number(v.country) : undefined,
+    functionalRoleId: v.functionalRole ? Number(v.functionalRole) : undefined,
+    languageId: v.englishLevel ? Number(v.englishLevel) : undefined
+  };
 
-    const payload: any = {
-      firstName: v.firstName,
-      lastName: v.lastName,
-      phoneNumber: v.phone,
-      countryId: v.country ? Number(v.country) : undefined,
-      functionalRoleId: v.functionalRole ? Number(v.functionalRole) : undefined,
-      languageId: v.englishLevel ? Number(v.englishLevel) : undefined
-    };
+  const cleanedPayload = Object.fromEntries(
+    Object.entries(payload).filter(([_, value]) => value !== undefined)
+  );
 
-    Object.keys(payload).forEach(k => payload[k] === undefined && delete payload[k]);
+  this.dataChange.emit(cleanedPayload);
+}
 
-    this.isSaving = true;
-
-    this.profileDataService.updatePersonProfile(payload).subscribe({
-      next: (res) => {
-        this.isSaving = false;
-        this.saveOk = true;
-        this.profileForm.markAsPristine();
-        console.log('Profile updated:', res);
-      },
-      error: (err) => {
-        this.isSaving = false;
-        this.saveError = 'No se pudo guardar los cambios';
-        console.error('Error updating profile:', err);
-      },
-    });
-  }
 
   onSubmit() {
     if (this.profileForm.valid) {

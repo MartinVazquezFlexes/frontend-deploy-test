@@ -1,6 +1,7 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router, RouterLink } from '@angular/router';
+import { ProfileDataService } from '../../../../modules/portal/profile-data/service/profile-data.service';
 
 @Component({
   selector: 'app-header-links',
@@ -11,12 +12,24 @@ import { Router, RouterLink } from '@angular/router';
 export class HeaderLinksComponent implements OnInit {
 
     isDropdownOpen = false;
+    userName : string = "";
 
     private translate = inject(TranslateService);
     private router = inject(Router);
+    profileDataService = inject(ProfileDataService);
 
     ngOnInit() {
       this.translate.addLangs(['en', 'es', 'pt']);
+      this.loadProfileName();
+    }
+
+    loadProfileName(){
+      this.profileDataService.getPersonData().subscribe({
+      next: (p) => {
+        this.userName = p.firstName
+      },
+      error: (err) => console.error('Error loading profile:', err),
+    });
     }
   
     switchLanguage(lang: string) {

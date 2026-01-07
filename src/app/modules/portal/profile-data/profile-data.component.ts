@@ -6,9 +6,10 @@ import { MySkillsComponent } from "./my-skills/my-skills.component";
 import { MyDataModel } from '../models/MyDataModel';
 import { ProfileDataService } from './service/profile-data.service';
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../../../shared/components/button/button.component';
 @Component({
   selector: 'app-profile-data',
-  imports: [MyFilesComponent, MyContactNetworksComponent, MyDataComponent, MySkillsComponent, CommonModule],
+  imports: [MyFilesComponent, MyContactNetworksComponent, MyDataComponent, MySkillsComponent, CommonModule, ButtonComponent],
   templateUrl: './profile-data.component.html',
   styleUrl: './profile-data.component.scss'
 })
@@ -47,8 +48,38 @@ export class ProfileDataComponent implements OnInit {
   });
   }
 
+  profilePayload: any = {};
+isSaving = false;
+
+onMyDataChange(data: any) {
+  this.profilePayload = {
+    ...this.profilePayload,
+    ...data
+  };
+}
+
   onSkillsChange(skills: string[]) {
     this.selectedSkills = skills;
     console.log('Skills actualizadas:', this.selectedSkills);
   }
+
+  onSaveAll(): void {
+  if (!Object.keys(this.profilePayload).length) return;
+
+  this.isSaving = true;
+
+  this.profileDataService
+    .updatePersonProfile(this.profilePayload)
+    .subscribe({
+      next: res => {
+        this.isSaving = false;
+        console.log('Perfil guardado', res);
+      },
+      error: err => {
+        this.isSaving = false;
+        console.error('Error guardando perfil', err);
+      }
+    });
+}
+
 }

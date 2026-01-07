@@ -3,8 +3,8 @@
   <a href="/home" class="menu__link">{{"NAVBAR.NOTIFICATION" | translate}}</a>
   <div class="menu__dropdown dropdown" [class.dropdown--active]="isDropdownOpen">
     <a href="#" class="dropdown__toggle" (click)="toggleDropdown($event)">
-      Daniel
-      <img src="./assets/img/profile-2.jpg" alt="Foto de perfil" class="dropdown__image" />
+      {{userName}}
+      <img src="./assets/img/403edeb53fcbe0404128d044c005f71f117ef4a4.jpg" alt="Foto de perfil" class="dropdown__image" />
     </a>
     <div class="dropdown__menu">
       <a class="dropdown__item"  routerLink="/profile-data">{{"NAVBAR.PROFILE" | translate}}</a>
