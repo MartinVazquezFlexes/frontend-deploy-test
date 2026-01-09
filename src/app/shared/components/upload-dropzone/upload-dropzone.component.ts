@@ -39,7 +39,7 @@ export class UploadDropzoneComponent {
       return;
     }
 
-    if (file.size > 2 * 1024 * 1024) {
+    if (file.size > 10 * 1024 * 1024) {
       this.errorMessage=this.translate.instant('FILE_UPLOAD.ERROR.ERROR_TOO_LARGE');
       this.messageService.setMessage(this.errorMessage);
       this.selectedFile = null;
@@ -50,12 +50,12 @@ export class UploadDropzoneComponent {
   }
 
   onAccept() {
-    if (this.selectedFile) {
-      this.fileUploaded = this.selectedFile;
-      this.selectedFile = null;
-      this.fileUploadedEvent.emit(this.fileUploaded);
-    }
-  }
+  if (!this.selectedFile) return;
+
+  this.fileUploaded = this.selectedFile;
+  this.fileUploadedEvent.emit(this.selectedFile);
+  this.selectedFile = null;
+}
 
   duplicatedFile(duplicated: boolean) {
     if (duplicated) {

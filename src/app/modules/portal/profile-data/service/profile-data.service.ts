@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { OptionItem } from '../../../../core/interfaces/option.interface';
 import { FunctionalRoleResponse } from '../../../../core/interfaces/functional-role.interface';
@@ -17,8 +17,13 @@ export class ProfileDataService {
 
   private http = inject(HttpClient);
 
-  getPersonData(): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/portal/person/profile`);
+  private readonly _firstName$ = new BehaviorSubject<string>('');
+  readonly firstName$ = this._firstName$.asObservable();
+
+  getPersonData() {
+    return this.http.get<any>(`${environment.apiBaseUrl}/portal/person/profile`).pipe(
+      tap(p => this._firstName$.next(p.firstName ?? ''))
+    );
   }
   getFunctionalRoles(): Observable<OptionItem[]> {
     return this.http.get<FunctionalRoleResponse[]>(`${environment.apiBaseUrl}/role-functional/all`).pipe(
@@ -95,6 +100,35 @@ export class ProfileDataService {
   }
 
   updatePersonProfile(payload: any) {
-    return this.http.put<any>(`${environment.apiBaseUrl}/portal/person/profile`, payload);
+    return this.http.put<any>(`${environment.apiBaseUrl}/portal/person/profile`, payload).pipe(
+      tap(p => this._firstName$.next(p.firstName ?? ''))
+    );
   }
+
+  uploadCv(personId: number, file: File, fromProfile: boolean) {
+    const formData = new FormData();
+
+    formData.append('cv', file);
+    formData.append('fromProfile', String(fromProfile));
+
+    return this.http.post(`${environment.apiBaseUrl}/cv/upload/${personId}`,formData);
+  }
+
+  getMyCvs(personId: number) {
+  return this.http.get<any>(`${environment.apiBaseUrl}/cv/get-myCvs/${personId}`,
+  );
+}
+
+deleteCv(personId: number, cvId: number) {
+  return this.http.delete<boolean>(
+    `${environment.apiBaseUrl}/cv/delete`,
+    { 
+      params: { 
+        personId: personId.toString(), 
+        cvId: cvId.toString() 
+      } 
+    }
+  );
+}
+
 }
