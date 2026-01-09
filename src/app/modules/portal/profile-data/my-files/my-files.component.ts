@@ -27,6 +27,8 @@ export class MyFilesComponent implements OnInit {
   private profileDataService = inject(ProfileDataService);
 
   @Output() fileSelected = new EventEmitter<File>();
+  @Output() componentReady = new EventEmitter<void>();
+  @Input() resetUploaderToken = 0;
 
   @ViewChild(UploadDropzoneComponent)
   uploadDropzone!: UploadDropzoneComponent;
@@ -58,6 +60,7 @@ loadMyCvs(): void {
         isLast: cv.isLast
       }));
       console.log('CVs cargados:', this.mockFiles);
+      this.componentReady.emit();
     },
     error: err => {
       console.error('Error al cargar CVs:', err);
@@ -67,14 +70,15 @@ loadMyCvs(): void {
 }
 
 onFileSelected(file: UploadedFile) {
-  if (file.url) {
-    // Simplemente abrir la URL directamente
-    window.open(file.url, '_blank');
-  } else {
-    console.warn('El archivo no tiene URL:', file);
-    this.messageService.setMessage('No se puede abrir el archivo');
+  if (!file.id) {
+    this.messageService.setMessage('Archivo inválido');
+    return;
   }
+
+  const url = this.profileDataService.downloadCvUrl(file.id);
+  window.open(url, '_blank');
 }
+
 
   onDeleteFile(file: UploadedFile) {
     if (!file.id) {
@@ -114,17 +118,16 @@ onFileSelected(file: UploadedFile) {
     return `${mb.toFixed(2)} MB`;
   }
 
+
   onFileUploaded(file: File | null) {
-    if (!file) return;
+  if (!file) return;
 
-    this.selectedFile = file;
-    this.fileSelected.emit(file);
-    
-    setTimeout(() => {
-      this.loadMyCvs();
+  this.selectedFile = file;
+  this.fileSelected.emit(file);
 
-      //le aviso que borre el file
-      this.uploadDropzone?.onRemove();
-    }, 1000);
-  }
+  setTimeout(() => {
+    this.loadMyCvs();
+  }, 1000);
+}
+
 }

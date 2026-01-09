@@ -9,7 +9,10 @@
   }
 
   <div class="upload__content">
-    <app-upload-dropzone (fileUploadedEvent)="onFileUploaded($event)"></app-upload-dropzone>
+    <app-upload-dropzone 
+    (fileUploadedEvent)="onFileUploaded($event)"
+    [resetToken]="resetUploaderToken">
+  </app-upload-dropzone>
   </div>
 
   <!-- Lista de archivos cargados -->
@@ -19,7 +22,7 @@
     <div class="files-container">
       @for(file of mockFiles; track file.id) {
         <div class="file-item">
-          <div class="file-content" > <!--(click)="onFileSelected(file)"-->
+          <div class="file-content" (click)="onFileSelected(file)">
             <div class="file-icon">
               <!-- Ícono de documento PDF -->
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

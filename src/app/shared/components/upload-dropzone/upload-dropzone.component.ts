@@ -1,4 +1,4 @@
-import { Component, inject, Output, EventEmitter, Input } from '@angular/core';
+import { Component, inject, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MessageService } from '../../../core/services/message.service';
@@ -19,6 +19,14 @@ export class UploadDropzoneComponent {
   @Input() mockFiles: File[] = [];
   @Input() size: 'small' | 'medium' | 'large' = 'large'; // Tamaño por defecto
   @Output() fileUploadedEvent = new EventEmitter<File | null>();
+  @Input()
+  set resetToken(_: number) {
+    this.resetAll();
+  }
+
+
+  @ViewChild(FileUploadedComponent)
+  fileUploadedChild!: FileUploadedComponent;
 
   private messageService = inject(MessageService);
   private translate = inject(TranslateService);
@@ -78,4 +86,17 @@ export class UploadDropzoneComponent {
     const mb = size / (1024 * 1024);
     return `${mb.toFixed(2)} MB`;
   }
+
+  clearUploadedFiles : boolean = false;
+
+  private resetAll(): void {
+  this.selectedFile = null;
+  this.fileUploaded = null;
+  this.messageService.setMessage('');
+
+  //avisar al hijo que limpie su lista
+  this.clearUploadedFiles = true;
+    setTimeout(() => this.clearUploadedFiles = false);
+  }
+
 }

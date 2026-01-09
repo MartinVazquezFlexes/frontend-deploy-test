@@ -1,4 +1,4 @@
-import { Component, OnInit, input, output, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, input, output, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputGenericComponent } from '../../../../shared/components/input-generic/input-generic.component';
@@ -11,6 +11,8 @@ import { ContactUpdateDTO, ResponseContactTypeDTO } from '../../models/MyContact
   styleUrl: './my-contact-networks.component.scss',
 })
 export class MyContactNetworksComponent implements OnInit {
+  @Output() componentReady = new EventEmitter<void>();
+
   contactTypes = input<ResponseContactTypeDTO[]>([]);
   initialContacts = input<ContactUpdateDTO[]>([]);
 
@@ -186,6 +188,7 @@ export class MyContactNetworksComponent implements OnInit {
     );
 
     console.log('Networks loaded:', this.networksArray.value);
+    this.componentReady.emit();
   }
 
   private setupValueChangesNew(): void {

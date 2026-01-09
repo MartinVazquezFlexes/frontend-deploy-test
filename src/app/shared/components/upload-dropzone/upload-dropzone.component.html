@@ -3,7 +3,8 @@
   [mockFiles]="mockFiles"
   [size]="size"
   (duplicatedFile)="duplicatedFile($event)"
-  (fileSelected)="onFileSelected($event)">
+  (fileSelected)="onFileSelected($event)"
+  [clearFiles]="clearUploadedFiles">
 </app-file-uploaded>
 
 @if (selectedFile) {

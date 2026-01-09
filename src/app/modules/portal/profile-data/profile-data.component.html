@@ -1,20 +1,22 @@
+<app-loader *ngIf="loadingService.isLoading$ | async"></app-loader>
 <div class="profile-data-container" *ngIf="myDataInput as d">
-
-  <app-my-data [data]="d" (dataChange)="onMyDataChange($event)">
+  @if (!(loadingService.isLoading$ | async)) {
+  @if (personDataReady) {
+  <app-my-data [data]="d" (dataChange)="onMyDataChange($event)" (componentReady)="deactivateLoader()">
   </app-my-data>
-  <app-my-skills [selectedSkillIds]="selectedSkills" (skillsChange)="onSkillsChange($event)" />
+  }
+  <app-my-skills [selectedSkillIds]="selectedSkills" (skillsChange)="onSkillsChange($event)" (componentReady)="deactivateLoader()"/>
 
     <app-my-files
   (fileSelected)="onCvSelected($event)"
-  [personId]="personId">
+  [personId]="personId"
+  [resetUploaderToken]="resetCvUploaderToken"
+  (componentReady)="deactivateLoader()">
   </app-my-files>
 
   @if (contactTypes.length > 0 && initialContactsReady) {
-  <app-my-contact-networks
-    [contactTypes]="contactTypes"
-    [initialContacts]="initialContacts"
-    (contactsChange)="onContactsChange($event)"
-    (deletedContactId)="onContactDeleted($event)">
+  <app-my-contact-networks [contactTypes]="contactTypes" [initialContacts]="initialContacts"
+    (contactsChange)="onContactsChange($event)" (deletedContactId)="onContactDeleted($event)" (componentReady)="deactivateLoader()">
   </app-my-contact-networks>
   }
 
@@ -23,4 +25,5 @@
       {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
     </app-button>
   </div>
+  }
 </div>

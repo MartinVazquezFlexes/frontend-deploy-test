@@ -26,6 +26,16 @@ export class FileUploadedComponent {
   @Output() duplicatedFile = new EventEmitter<boolean>();
   @Output() fileSelected = new EventEmitter<File | null>();
 
+  @Input()
+  set clearFiles(value: boolean) {
+    if (value) {
+      this.files = [];
+      this.selectedFileIndex = null;
+      this.fileSelected.emit(null);
+    }
+  }
+
+
   // Computed signals que reaccionan automáticamente a cambios en el contexto
   isApplicationForm = computed(() => {
     return this.fileUploadContextService.context() === 'application-form';

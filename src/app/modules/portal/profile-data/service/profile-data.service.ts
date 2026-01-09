@@ -131,4 +131,8 @@ deleteCv(personId: number, cvId: number) {
   );
 }
 
+downloadCvUrl(cvId: number): string {
+  return `${environment.apiBaseUrl}/cv/download/${cvId}`;
+}
+
 }

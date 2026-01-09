@@ -12,10 +12,12 @@ import { ContactService } from './service/contact.service';
 import { ContactTypeService } from './service/contact-type.service';
 import { ContactMapperUtil } from '../../../shared/utils/contact-mapper';
 import { ContactUpdateDTO, ResponseContactTypeDTO } from '../models/MyContactsModels';
+import { LoadingService } from '../../../shared/services/loader/loading.service';
+import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-profile-data',
-  imports: [MyFilesComponent, MyContactNetworksComponent, MyDataComponent, MySkillsComponent, CommonModule, ButtonComponent],
+  imports: [MyFilesComponent, MyContactNetworksComponent, MyDataComponent, MySkillsComponent, CommonModule, ButtonComponent, LoaderComponent],
   templateUrl: './profile-data.component.html',
   styleUrl: './profile-data.component.scss'
 })
@@ -32,9 +34,17 @@ export class ProfileDataComponent implements OnInit {
   contactService = inject(ContactService);
   contactTypeService = inject(ContactTypeService);
 
+  personDataReady = false;
   initialContactsReady = false;
 
+  loadedComponents = 0;
+  componentsCount = 4;
+
+  constructor(public loadingService: LoadingService) { }
+  
+
   ngOnInit(): void {
+    this.loadingService.setLoadingState(true);
     this.loadContacts();
     this.profileDataService.getPersonData().subscribe({
       next: (p) => {
@@ -50,6 +60,8 @@ export class ProfileDataComponent implements OnInit {
           languageId: p.languages?.[0]?.id != null ? String(p.languages[0].id) : null,
         };
         this.selectedSkills = p.skills?.map((s: any) => s.id) ?? [];
+        this.personDataReady = true;
+        this.loadingService.setLoadingState(false);
       },
       error: (err) => console.error('Error loading profile:', err),
     });
@@ -85,12 +97,16 @@ private uploadCvAndFinish(): void {
 @ViewChild(MyFilesComponent)
   myFilesComponent!: MyFilesComponent;
 
+resetCvUploaderToken = 0;
+
 private finishSave(): void {
   this.isSaving = false;
   console.log('Perfil y CV guardados correctamente');
 
   //aviso al hijo que recargue los archivos
   this.myFilesComponent.loadMyCvs();
+
+  this.resetCvUploaderToken++;
 }
 
 
@@ -177,6 +193,13 @@ private finishSave(): void {
       },
       error: (err) => console.error('Error loading contacts:', err),
     });
+  }
+
+  deactivateLoader(): void {
+    this.componentsCount++;
+    if (this.componentsCount >= this.loadedComponents) {
+      this.loadingService.setLoadingState(false); 
+    }
   }
 
 }

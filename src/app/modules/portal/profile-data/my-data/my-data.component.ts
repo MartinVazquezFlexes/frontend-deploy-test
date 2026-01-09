@@ -40,6 +40,7 @@ export class MyDataComponent implements OnInit, OnChanges {
   private cdr = inject(ChangeDetectorRef);
 
   @Input() data: MyDataInput | null = null;
+  @Output() componentReady = new EventEmitter<void>();
 
   isSaving = false;
   saveError: string | null = null;
@@ -48,6 +49,10 @@ export class MyDataComponent implements OnInit, OnChanges {
   functionalRoleOptions: OptionItem[] = [];
   englishLevelOptions: OptionItem[] = [];
   countryOptions: OptionItem[] = [];
+
+  functionalRoleOptionsReady = false;
+  englishLevelOptionsReady = false;
+  countryOptionsReady = false;
 
   @Output() functionalRoleChange = new EventEmitter<OptionItem | null>();
   @Output() englishLevelChange = new EventEmitter<OptionItem | null>();
@@ -109,6 +114,7 @@ export class MyDataComponent implements OnInit, OnChanges {
     );
 
     this.profileForm.get('email')?.disable();
+    this.loadSelects();
   }
   loadFunctionalRoles() {
     this.profileDataService.getFunctionalRoles().subscribe({
@@ -118,6 +124,8 @@ export class MyDataComponent implements OnInit, OnChanges {
         this.functionalRoleOptions = Array.from(uniqueRolesMap.values());
         this.normalizeFunctionalRoleOptions();
         this.cdr.detectChanges();
+        this.functionalRoleOptionsReady = true;
+        this.loadSelects();
       },
       error: (error) => {
         this.functionalRoleOptions = [];
@@ -153,6 +161,8 @@ export class MyDataComponent implements OnInit, OnChanges {
       next: (levels) => {
         this.englishLevelOptions = levels;
         this.cdr.detectChanges();
+        this.englishLevelOptionsReady = true;
+        this.loadSelects();
       },
       error: () => {
         this.englishLevelOptions = [];
@@ -181,8 +191,8 @@ export class MyDataComponent implements OnInit, OnChanges {
       next: (countries) => {
         this.countryOptions = countries;
         this.cdr.detectChanges();
-        this.syncSelectsFromForm();
-        this.applyInitialSelections();
+        this.countryOptionsReady = true;
+        this.loadSelects();
       },
       error: () => {
         this.countryOptions = [];
@@ -319,5 +329,13 @@ export class MyDataComponent implements OnInit, OnChanges {
       ...o,
       value: String(o.value)
     }));
+  }
+
+  private loadSelects(): void {
+    if (this.functionalRoleOptionsReady && this.englishLevelOptionsReady && this.countryOptionsReady) {
+      this.syncSelectsFromForm
+      this.applyInitialSelections();
+      this.componentReady.emit();
+    }
   }
 }

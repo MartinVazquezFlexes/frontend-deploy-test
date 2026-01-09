@@ -26,6 +26,7 @@ export class MySkillsComponent {
   @Input() selectedSkillIds: number[] = [];
   @Output() skillsChange = new EventEmitter<number[]>();
   @Input() maxSkills: number = 20;
+  @Output() componentReady = new EventEmitter<void>();
 
   profileDataService = inject(ProfileDataService);
   
@@ -48,6 +49,8 @@ export class MySkillsComponent {
       next: (response) =>{
         this.allSkills = response;
         this.updateFilteredSkills();
+        this.componentReady.emit();
+        
       },
       error: (err) =>{
         console.error(err);
